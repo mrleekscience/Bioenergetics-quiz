@@ -1,0 +1,2680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AQA GCSE Bioenergetics Revision Quiz — Mr Leek Science</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .option-card {
+      transition: all 0.16s ease;
+    }
+    .option-card:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+    .fade-in {
+      animation: fadeIn 0.22s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-100 text-slate-900">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="bg-slate-900 text-white shadow-md sticky top-0 z-30 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <img
+          src="mr leek science.jpg"
+          onerror="this.onerror=null;this.src='mrleeksciencelogo.png';"
+          alt="Mr Leek Science Logo"
+          class="h-12 sm:h-14 w-auto object-contain rounded-xl bg-white p-0.5 shadow-sm"
+        />
+        <div>
+          <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white leading-snug">
+            AQA GCSE Bioenergetics Revision Quiz
+          </h1>
+          <p class="text-xs sm:text-sm text-teal-300 font-medium">
+            Mr Leek Science &bull; AQA GCSE Biology &bull; Topic 4: Bioenergetics
+          </p>
+        </div>
+      </div>
+
+      <div id="headerControls" class="hidden flex items-center gap-2 sm:gap-3">
+        <span id="headerStudentBadge" class="hidden sm:inline-flex items-center gap-1.5 bg-slate-800 text-slate-200 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-700">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span id="headerStudentName">Student</span>
+        </span>
+        <button
+          type="button"
+          onclick="confirmReturnHome()"
+          class="text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 px-3 py-2 rounded-xl border border-slate-700 transition"
+        >
+          Menu
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8">
+
+    <!-- ==================== VIEW 1: START SCREEN ==================== -->
+    <section id="startScreen" class="fade-in">
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <!-- Top Banner -->
+        <div class="bg-gradient-to-r from-slate-900 via-teal-900 to-emerald-900 px-6 py-6 sm:px-8 text-white">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-teal-200 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-2.5">
+            Topic 4 &bull; Paper 1 Revision (8461 &amp; 8464)
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Configure Your Bioenergetics Quiz
+          </h2>
+          <p class="text-slate-200 text-sm sm:text-base mt-1.5 max-w-2xl">
+            Enter your name, select your tier, choose either all Bioenergetics topics or Required Practicals only, and pick your question count.
+          </p>
+        </div>
+
+        <form id="quizSetupForm" onsubmit="handleStartQuiz(event)" novalidate class="p-6 sm:p-8 space-y-7">
+
+          <!-- 1. STUDENT DETAILS ROW (Clean inputs with no legacy helper text underneath) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div>
+              <label for="studentNameInput" class="block text-sm font-bold text-slate-800 mb-1.5">
+                Student Name <span class="text-rose-600 font-extrabold">*</span>
+              </label>
+              <input
+                type="text"
+                id="studentNameInput"
+                placeholder="Enter your full name"
+                maxlength="50"
+                autocomplete="name"
+                oninput="clearValidationError()"
+                class="w-full rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 px-4 py-3 text-slate-900 font-medium outline-none transition"
+              />
+            </div>
+
+            <div>
+              <label for="studentEmailInput" class="block text-sm font-bold text-slate-800 mb-1.5">
+                Email Address <span class="text-slate-400 font-medium">(Optional)</span>
+              </label>
+              <input
+                type="email"
+                id="studentEmailInput"
+                placeholder="e.g. student@school.co.uk"
+                maxlength="80"
+                autocomplete="email"
+                class="w-full rounded-xl border-2 border-slate-300 bg-slate-50 focus:bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 px-4 py-3 text-slate-900 font-medium outline-none transition"
+              />
+            </div>
+          </div>
+
+          <!-- 2. SELECT TIER / PATHWAY -->
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-sm font-bold text-slate-800">Select Tier / Pathway</span>
+              <span id="tierCountHint" class="text-xs font-semibold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200">
+                Higher Tier Selected
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5" id="tierSelectorGroup">
+              <!-- Foundation -->
+              <button
+                type="button"
+                data-tier="foundation"
+                onclick="selectTier('foundation')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-sky-100 text-sky-800 mb-1.5">
+                      Combined / Separate
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Foundation Tier</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Core photosynthesis, limiting factors, uses of glucose, aerobic &amp; anaerobic respiration, exercise &amp; metabolism (Grades 1–5).
+                </p>
+              </button>
+
+              <!-- Higher (Default Active) -->
+              <button
+                type="button"
+                data-tier="higher"
+                onclick="selectTier('higher')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-teal-600 bg-teal-50/60 shadow-sm transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-teal-100 text-teal-800 mb-1.5">
+                      Combined / Separate
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Higher Tier</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-teal-600 bg-teal-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Includes inverse square law (1/d²), interacting limiting factors &amp; greenhouse economics, and oxygen debt / liver lactic acid breakdown (Grades 4–9).
+                </p>
+              </button>
+
+              <!-- Separate Biology -->
+              <button
+                type="button"
+                data-tier="separate"
+                onclick="selectTier('separate')"
+                class="tier-btn text-left p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 transition relative flex flex-col justify-between"
+              >
+                <div class="flex items-start justify-between gap-2">
+                  <div>
+                    <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-purple-100 text-purple-800 mb-1.5">
+                      Triple 8461
+                    </span>
+                    <h3 class="text-base font-extrabold text-slate-900">Separate Biology</h3>
+                  </div>
+                  <span class="tier-check w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    ✓
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                  Full 8461 syllabus plus deeper quantitative rate-graph analysis, commercial greenhouse optimisation &amp; advanced metabolic applications (Grades 1–9).
+                </p>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. QUIZ FOCUS (Dedicated Box for Required Practicals Only) -->
+          <div>
+            <span class="block text-sm font-bold text-slate-800 mb-2.5">Quiz Focus</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <!-- All Bioenergetics Topics -->
+              <button
+                type="button"
+                id="modeAllBtn"
+                onclick="selectMode('all')"
+                class="text-left p-4 rounded-2xl border-2 border-teal-600 bg-teal-50/60 shadow-sm transition flex items-start gap-3.5"
+              >
+                <div id="modeAllIcon" class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <h4 class="font-extrabold text-slate-900 text-sm sm:text-base">All Bioenergetics Topics</h4>
+                    <span id="modeAllCheck" class="text-teal-600 font-extrabold text-sm">✓</span>
+                  </div>
+                  <p class="text-xs text-slate-600 mt-1">
+                    Covers photosynthesis equations, limiting factors, uses of glucose, aerobic/anaerobic respiration, exercise &amp; metabolism.
+                  </p>
+                </div>
+              </button>
+
+              <!-- Dedicated Separate Box: Required Practicals Only -->
+              <button
+                type="button"
+                id="modeRpBtn"
+                onclick="selectMode('rp')"
+                class="text-left p-4 rounded-2xl border-2 border-slate-200 bg-amber-50/40 hover:border-amber-400 transition flex items-start gap-3.5"
+              >
+                <div id="modeRpIcon" class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3v4.5m4.5-4.5v4.5M6 7.5h12M7.5 7.5l-1.5 11.25A2.25 2.25 0 008.25 21h7.5a2.25 2.25 0 002.25-2.25L16.5 7.5" />
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-extrabold text-slate-900 text-sm sm:text-base">Required Practicals Only</h4>
+                    <span id="modeRpCheck" class="hidden text-amber-600 font-extrabold text-sm">✓</span>
+                  </div>
+                  <p id="modeRpDesc" class="text-xs text-slate-600 mt-1">
+                    Focused practical drill: RP6 Combined / RP5 Separate Photosynthesis Light Intensity (Pondweed) &amp; Respiration Investigations.
+                  </p>
+                </div>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. NUMBER OF QUESTIONS -->
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+              <span class="text-sm font-bold text-slate-800">Number of Questions</span>
+              <div class="flex items-center gap-2">
+                <span id="poolAvailabilityText" class="text-xs font-medium text-slate-500">
+                  96 unique questions available
+                </span>
+                <span id="cappedPoolBadge" class="hidden text-[11px] font-bold bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full border border-amber-300">
+                  Capped to max available
+                </span>
+              </div>
+            </div>
+            <div class="grid grid-cols-5 gap-2 sm:gap-3" id="countSelectorGroup">
+              <button type="button" data-count="10" onclick="selectCount(10)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                10
+              </button>
+              <button type="button" data-count="20" onclick="selectCount(20)" class="count-btn py-3 px-2 rounded-xl border-2 border-teal-600 bg-teal-600 text-white font-extrabold text-sm sm:text-base shadow-sm transition">
+                20
+              </button>
+              <button type="button" data-count="30" onclick="selectCount(30)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                30
+              </button>
+              <button type="button" data-count="50" onclick="selectCount(50)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                50
+              </button>
+              <button type="button" data-count="80" onclick="selectCount(80)" class="count-btn py-3 px-2 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-teal-400 text-slate-800 font-extrabold text-sm sm:text-base transition">
+                80
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. BOTTOM ACTION FOOTER -->
+          <div class="pt-4 border-t border-slate-200 space-y-3">
+            <div id="validationAlert" class="hidden rounded-xl bg-rose-50 border border-rose-300 text-rose-800 px-4 py-3 text-sm font-semibold flex items-center gap-2">
+              <svg class="w-5 h-5 text-rose-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+              </svg>
+              <span>Please enter your Student Name before starting the quiz.</span>
+            </div>
+
+            <button
+              type="submit"
+              id="startQuizBtn"
+              class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-extrabold text-base sm:text-lg shadow-lg shadow-teal-600/20 transition transform active:scale-[0.99] flex items-center justify-center gap-2"
+            >
+              <span id="startBtnLabel">Start Higher Tier Quiz (20 Questions)</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 2: ACTIVE QUIZ ==================== -->
+    <section id="quizScreen" class="hidden fade-in space-y-5">
+      <!-- Progress & Metadata Header -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span id="quizTierBadge" class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-teal-100 text-teal-800">
+              Higher Tier
+            </span>
+            <span id="quizTopicBadge" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">
+              Photosynthesis &amp; Equations
+            </span>
+            <span id="quizFocusBadge" class="hidden text-xs font-extrabold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 border border-amber-300">
+              Required Practical
+            </span>
+          </div>
+
+          <div class="flex items-center gap-4 text-sm font-bold text-slate-700">
+            <span id="questionCounterText">Question 1 of 20</span>
+            <span class="text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-200">
+              Score: <span id="liveScoreText">0</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+          <div id="quizProgressBar" class="h-full bg-gradient-to-r from-teal-500 to-emerald-500 transition-all duration-300" style="width: 5%;"></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-md border border-slate-200">
+        <h3 id="questionPrompt" class="text-lg sm:text-xl font-bold text-slate-900 leading-relaxed mb-6">
+          Loading question...
+        </h3>
+
+        <!-- Options List -->
+        <div id="optionsContainer" class="space-y-3"></div>
+
+        <!-- Instant AQA Mark-Scheme Feedback Box -->
+        <div id="feedbackBox" class="hidden mt-6 rounded-2xl p-5 border-2 fade-in">
+          <div class="flex items-start gap-3">
+            <div id="feedbackIcon" class="w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-sm shrink-0 mt-0.5"></div>
+            <div class="flex-1">
+              <h4 id="feedbackHeading" class="font-extrabold text-base"></h4>
+              <p id="feedbackExplanation" class="text-sm mt-1.5 leading-relaxed"></p>
+            </div>
+          </div>
+
+          <div class="mt-5 flex justify-end">
+            <button
+              type="button"
+              id="nextQuestionBtn"
+              onclick="handleNextQuestion()"
+              class="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base transition flex items-center gap-2 shadow"
+            >
+              <span id="nextBtnText">Next Question</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== VIEW 3: DIAGNOSTIC REPORT ==================== -->
+    <section id="resultsScreen" class="hidden fade-in space-y-6">
+      <!-- Summary Hero Card -->
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <div class="bg-gradient-to-r from-slate-900 via-teal-900 to-emerald-900 p-6 sm:p-8 text-white">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <span class="inline-block text-xs font-bold uppercase tracking-wider bg-white/15 text-teal-200 px-3 py-1 rounded-full mb-2">
+                AQA GCSE Bioenergetics Diagnostic Report
+              </span>
+              <h2 id="reportStudentTitle" class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                Diagnostic Report: Student
+              </h2>
+              <p id="reportMetaSubtitle" class="text-sm text-slate-200 mt-1">
+                Higher Tier &bull; All Bioenergetics Topics
+              </p>
+            </div>
+
+            <div class="flex items-center gap-3 shrink-0">
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3.5 text-center">
+                <div id="reportPercentage" class="text-3xl sm:text-4xl font-extrabold text-emerald-300">
+                  0%
+                </div>
+                <div id="reportFraction" class="text-xs sm:text-sm font-semibold text-slate-200 mt-0.5">
+                  0 / 20 Correct
+                </div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3.5 text-center">
+                <div id="reportGradeBadge" class="text-2xl sm:text-3xl font-extrabold text-amber-300">
+                  Grade 5
+                </div>
+                <div class="text-[11px] font-semibold text-slate-200 mt-0.5 uppercase tracking-wide">
+                  Est. Grade
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons Row -->
+        <div class="p-5 sm:p-6 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            id="retryMissedBtn"
+            onclick="startMissedQuestionsQuiz()"
+            class="hidden px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-sm shadow-sm transition flex items-center gap-2"
+          >
+            <span>Retry Missed Questions (<span id="missedCountLabel">0</span>)</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="copyResultsSummary()"
+            class="px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm shadow-sm transition flex items-center gap-2"
+          >
+            <span id="copyBtnLabel">Copy Results Summary</span>
+          </button>
+
+          <a
+            id="emailResultsLink"
+            href="#"
+            class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-sm transition flex items-center gap-2"
+          >
+            <span>Email Results</span>
+          </a>
+
+          <button
+            type="button"
+            onclick="returnToMenu()"
+            class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-bold text-sm transition ml-auto"
+          >
+            New Quiz / Change Settings
+          </button>
+        </div>
+
+        <!-- Topic-by-Topic Breakdown -->
+        <div class="p-6 sm:p-8">
+          <h3 class="text-lg font-extrabold text-slate-900 mb-1">Topic-by-Topic Performance Breakdown</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mb-5">
+            Identify your strongest areas in Bioenergetics (&ge;70%) and prioritise topics needing further revision (&lt;70%).
+          </p>
+          <div id="topicBreakdownContainer" class="space-y-4"></div>
+        </div>
+      </div>
+
+      <!-- Question Review List -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 sm:p-8">
+        <h3 class="text-lg font-extrabold text-slate-900 mb-4">Question-by-Question Review</h3>
+        <div id="questionReviewList" class="space-y-4"></div>
+      </div>
+    </section>
+
+    <!-- Custom In-App Confirmation Modal -->
+    <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+        <h3 class="text-lg font-extrabold text-slate-900">Return to Quiz Menu?</h3>
+        <p class="text-sm text-slate-600 mt-2">
+          Your current quiz progress will be lost if you return to the start screen.
+        </p>
+        <div class="mt-6 flex justify-end gap-3">
+          <button type="button" onclick="closeConfirmModal()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm">
+            Continue Quiz
+          </button>
+          <button type="button" onclick="returnToMenu()" class="px-4 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm">
+            Yes, Exit Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 py-5 mt-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <span class="font-semibold text-slate-700">Mr Leek Science &bull; AQA GCSE Biology (8461 &amp; 8464)</span>
+      <span>Topic 4: Bioenergetics Revision Platform</span>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // 1. COMPREHENSIVE 108-QUESTION AQA TOPIC 4 BIOENERGETICS BANK
+    //    Schema: { id, tier: 'foundation'|'higher'|'separate', topic, isPractical, q, options, answer, explanation }
+    //    Filtering rules:
+    //      - 'foundation': tier === 'foundation'
+    //      - 'higher': tier === 'foundation' || tier === 'higher'
+    //      - 'separate': tier === 'foundation' || tier === 'higher' || tier === 'separate'
+    // =========================================================================
+    const QUESTION_BANK = [
+      // -------------------- TOPIC 1: PHOTOSYNTHESIS & EQUATIONS (15) --------------------
+      {
+        id: 1,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'What is the correct word equation for photosynthesis in green plants and algae?',
+        options: [
+          'carbon dioxide + water → glucose + oxygen',
+          'glucose + oxygen → carbon dioxide + water',
+          'carbon dioxide + glucose → water + oxygen',
+          'oxygen + water → carbon dioxide + glucose'
+        ],
+        answer: 0,
+        explanation: 'During photosynthesis, plants use light energy to react carbon dioxide and water together to produce glucose and oxygen.'
+      },
+      {
+        id: 2,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'Which balanced symbol equation accurately represents photosynthesis?',
+        options: [
+          '6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂',
+          'C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O',
+          'CO₂ + H₂O → C₆H₁₂O₆ + O₂',
+          '6CO₂ + 12H₂O → 2C₆H₁₂O₆ + 6O₂'
+        ],
+        answer: 0,
+        explanation: 'Six molecules of carbon dioxide react with six molecules of water to form one molecule of glucose (C₆H₁₂O₆) and six molecules of oxygen.'
+      },
+      {
+        id: 3,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'Why is photosynthesis classified as an endothermic reaction?',
+        options: [
+          'Because energy is transferred from the environment (as light energy absorbed by chlorophyll) into the chloroplasts to drive the reaction',
+          'Because it releases large amounts of thermal energy into the surrounding air',
+          'Because it only happens in the dark when temperatures fall',
+          'Because it breaks down glucose to release ATP energy'
+        ],
+        answer: 0,
+        explanation: 'Photosynthesis is an endothermic reaction in which energy is transferred from the environment to the chloroplasts by light.'
+      },
+      {
+        id: 4,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'Where inside a plant cell does photosynthesis take place, and which pigment absorbs light energy?',
+        options: [
+          'Inside chloroplasts, using the green pigment chlorophyll',
+          'Inside mitochondria, using haemoglobin',
+          'Inside ribosomes, using cellulose',
+          'Inside the permanent vacuole, using cell sap'
+        ],
+        answer: 0,
+        explanation: 'Chloroplasts contain chlorophyll, which absorbs light energy from the Sun to power the synthesis of glucose from CO₂ and water.'
+      },
+      {
+        id: 5,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'How does carbon dioxide enter a plant leaf from the surrounding atmosphere for photosynthesis?',
+        options: [
+          'By diffusion through open stomata on the underside of the leaf into the air spaces of the spongy mesophyll',
+          'By active transport through the root hair cells and up the xylem',
+          'By osmosis across the waterproof upper waxy cuticle',
+          'By translocation down the phloem sieve tubes'
+        ],
+        answer: 0,
+        explanation: 'Carbon dioxide diffuses down a concentration gradient from the air outside into the leaf through open stomatal pores.'
+      },
+      {
+        id: 6,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'How does water reach the palisade mesophyll cells in the leaf for photosynthesis?',
+        options: [
+          'Absorbed from the soil into root hair cells by osmosis and transported up the stem in dead xylem vessels',
+          'Diffuses through the stomata from humid air',
+          'Transported upward from the roots in living phloem tubes',
+          'Produced inside the chloroplasts during aerobic respiration'
+        ],
+        answer: 0,
+        explanation: 'Water enters root hair cells by osmosis and travels up the transpiration stream through hollow xylem vessels to the leaves.'
+      },
+      {
+        id: 7,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'What happens to the oxygen gas produced during photosynthesis in a plant leaf?',
+        options: [
+          'Some is used immediately by the plant’s mitochondria for aerobic respiration, and excess oxygen diffuses out through the stomata into the air',
+          'All of it is converted into starch inside the root cells',
+          'It is pumped down the phloem to keep soil bacteria alive',
+          'It is stored as liquid bubbles inside the permanent vacuole'
+        ],
+        answer: 0,
+        explanation: 'Plants respire continuously; part of the oxygen made in photosynthesis is used in respiration, while the surplus diffuses out via the stomata.'
+      },
+      {
+        id: 8,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'Why do variegated leaves (leaves with green chlorophyll-containing patches and white/yellow patches lacking chlorophyll) grow more slowly than completely green leaves of the same size?',
+        options: [
+          'The white patches lack chlorophyll, so they absorb less light energy and carry out less photosynthesis, producing less glucose for growth',
+          'The white patches block all stomata so carbon dioxide cannot enter the leaf',
+          'The green patches poison the white patches with oxygen',
+          'Variegated leaves cannot transport water in their xylem'
+        ],
+        answer: 0,
+        explanation: 'Only cells containing chlorophyll can absorb light for photosynthesis; a smaller green area reduces total glucose production.'
+      },
+      {
+        id: 9,
+        tier: 'higher',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'At the "compensation point" (a specific dim light intensity at dawn or dusk), there is no net gas exchange of CO₂ or O₂ between a plant leaf and the air. Why?',
+        options: [
+          'The rate of photosynthesis equals the rate of aerobic respiration, so all CO₂ produced by respiration is used in photosynthesis and all O₂ produced is used in respiration',
+          'Both photosynthesis and aerobic respiration have stopped completely',
+          'The guard cells have permanently sealed the stomata with lignin',
+          'The enzymes in both chloroplasts and mitochondria have denatured'
+        ],
+        answer: 0,
+        explanation: 'At the compensation point, photosynthetic oxygen output matches respiratory oxygen consumption, and respiratory CO₂ output matches photosynthetic CO₂ uptake.'
+      },
+      {
+        id: 10,
+        tier: 'higher',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'During a 24-hour cycle in bright summer conditions, how does net gas exchange in a green leaf change between midday and midnight?',
+        options: [
+          'At midday, photosynthesis is much faster than respiration (net CO₂ uptake, net O₂ release); at midnight, only respiration occurs (net O₂ uptake, net CO₂ release)',
+          'At midday, only photosynthesis happens and respiration stops; at midnight, only photosynthesis happens',
+          'At both midday and midnight, the leaf takes in oxygen and releases carbon dioxide',
+          'At midnight, the leaf takes in carbon dioxide to store for the morning'
+        ],
+        answer: 0,
+        explanation: 'Plants respire 24 hours a day, but only photosynthesise in light. In bright daylight, photosynthesis far exceeds respiration; in darkness, only respiration occurs.'
+      },
+      {
+        id: 11,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'How are palisade mesophyll cells adapted to maximise the rate of photosynthesis?',
+        options: [
+          'They are packed with chloroplasts and positioned close to the upper surface of the leaf to absorb maximum light',
+          'They are dead, hollow tubes reinforced with lignin',
+          'They contain haemoglobin to bind carbon dioxide',
+          'They have no cell wall so light passes through faster'
+        ],
+        answer: 0,
+        explanation: 'Palisade cells are tall, tightly packed near the upper epidermis, and rich in chloroplasts to capture as much incoming sunlight as possible.'
+      },
+      {
+        id: 12,
+        tier: 'higher',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'If a photosynthesising plant produces 90 g of glucose (C₆H₁₂O₆, relative formula mass = 180), how many moles of glucose have been synthesised?',
+        options: ['0.50 mol', '2.0 mol', '0.05 mol', '9.0 mol'],
+        answer: 0,
+        explanation: 'Moles = mass ÷ Mr = 90 g ÷ 180 = 0.50 mol.'
+      },
+      {
+        id: 13,
+        tier: 'separate',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'In Separate Biology, why does a plant grown in soil deficient in magnesium ions show yellowing of older leaves (chlorosis) and reduced photosynthetic rate?',
+        options: [
+          'Magnesium ions are required to synthesise chlorophyll; without chlorophyll, leaves cannot absorb light energy efficiently for photosynthesis',
+          'Magnesium ions are needed to open the stomata on the upper epidermis',
+          'Magnesium ions react directly with glucose to form cellulose',
+          'Magnesium ions form the protein active sites of digestive enzymes'
+        ],
+        answer: 0,
+        explanation: 'Magnesium is a central atom in the chlorophyll molecule; deficiency causes chlorosis and limits light absorption.'
+      },
+      {
+        id: 14,
+        tier: 'separate',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'Why does covering the lower epidermis of a leaf with petroleum jelly (Vaseline) dramatically reduce the rate of photosynthesis even in bright light?',
+        options: [
+          'Most stomata are on the lower epidermis; blocking them prevents carbon dioxide from diffusing into the leaf air spaces for photosynthesis',
+          'Petroleum jelly absorbs all the sunlight before it reaches the upper epidermis',
+          'Petroleum jelly dissolves the chlorophyll inside palisade cells',
+          'Petroleum jelly stops water entering through the root hairs'
+        ],
+        answer: 0,
+        explanation: 'Blocking stomata on the lower surface prevents CO₂ entry by diffusion, making CO₂ concentration the limiting factor.'
+      },
+      {
+        id: 15,
+        tier: 'foundation',
+        topic: 'Photosynthesis & Equations',
+        isPractical: false,
+        q: 'Which four factors directly affect the rate of photosynthesis in a plant?',
+        options: [
+          'Temperature, light intensity, carbon dioxide concentration, and the amount of chlorophyll',
+          'Oxygen concentration, soil pH, wind speed, and humidity',
+          'Nitrogen concentration, nitrate ions, atmospheric pressure, and gravity',
+          'Heart rate, breathing rate, glycogen stores, and lactic acid'
+        ],
+        answer: 0,
+        explanation: 'AQA specifies four factors affecting the rate of photosynthesis: temperature, light intensity, carbon dioxide concentration, and the amount of chlorophyll.'
+      },
+
+      // -------------------- TOPIC 2: LIMITING FACTORS & GREENHOUSES (18) --------------------
+      {
+        id: 16,
+        tier: 'foundation',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'What is meant by a "limiting factor" in photosynthesis?',
+        options: [
+          'The environmental factor (such as light intensity, CO₂ concentration, or temperature) that is in shortest supply and therefore restricts the rate of photosynthesis from increasing further',
+          'A chemical poison that permanently destroys all chloroplasts in a leaf',
+          'The maximum amount of glucose a plant can store in its roots',
+          'A factor that is present in huge excess above what the plant needs'
+        ],
+        answer: 0,
+        explanation: 'A limiting factor is whichever factor is furthest from its optimum (in shortest supply), holding back the overall rate of photosynthesis.'
+      },
+      {
+        id: 17,
+        tier: 'foundation',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'On a graph of photosynthesis rate (y-axis) against light intensity (x-axis), the curve rises steeply at first and then levels off into a flat horizontal line. Why does the line level off?',
+        options: [
+          'Light intensity is no longer the limiting factor; another factor (such as carbon dioxide concentration or temperature) is now limiting the rate',
+          'The plant has run out of water and died',
+          'All the chlorophyll has been destroyed by bright light',
+          'Photosynthesis stops completely at high light intensities'
+        ],
+        answer: 0,
+        explanation: 'Once light intensity is high enough, increasing it further does not raise the rate because CO₂ concentration or temperature has become the limiting factor.'
+      },
+      {
+        id: 18,
+        tier: 'foundation',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'Why does the rate of photosynthesis fall sharply to zero if the temperature rises above 45–50 °C?',
+        options: [
+          'The enzymes controlling photosynthesis become denatured as their active sites change shape permanently',
+          'Carbon dioxide turns into a solid at 45 °C',
+          'The roots stop absorbing water by osmosis',
+          'Light intensity drops to zero above 45 °C'
+        ],
+        answer: 0,
+        explanation: 'Photosynthesis is enzyme-controlled; high temperatures break bonds maintaining the enzyme’s 3D structure, denaturing the active site.'
+      },
+      {
+        id: 19,
+        tier: 'foundation',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'On a cold, bright winter morning (e.g. 2 °C in full sunshine), which factor is most likely limiting the rate of photosynthesis in outdoor plants?',
+        options: [
+          'Temperature (low kinetic energy means slow enzyme-substrate collisions)',
+          'Light intensity',
+          'Amount of water in the soil',
+          'Oxygen concentration in the air'
+        ],
+        answer: 0,
+        explanation: 'Despite abundant light, low temperature reduces molecular kinetic energy, limiting the rate of enzyme-catalysed reactions in photosynthesis.'
+      },
+      {
+        id: 20,
+        tier: 'foundation',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'At midnight in a warm, heated greenhouse, which factor is limiting the rate of photosynthesis?',
+        options: ['Light intensity', 'Temperature', 'Carbon dioxide concentration', 'Chlorophyll concentration'],
+        answer: 0,
+        explanation: 'In darkness (midnight), light intensity is zero, so no light energy is available to drive photosynthesis.'
+      },
+      {
+        id: 21,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'According to the inverse square law for light intensity (Light intensity ∝ 1 / d²), if a lamp is moved from 10 cm away from a plant to 20 cm away, what happens to the light intensity?',
+        options: [
+          'It decreases by a factor of 4 (to one-quarter of its original intensity)',
+          'It decreases by a factor of 2 (to half of its original intensity)',
+          'It increases by a factor of 4',
+          'It decreases by a factor of 10'
+        ],
+        answer: 0,
+        explanation: 'Doubling the distance (×2) changes light intensity by 1 / 2² = 1/4 (one-quarter).'
+      },
+      {
+        id: 22,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'Using the inverse square law, if a lamp is moved from 30 cm away from pondweed to 10 cm away (one-third of the distance), how does the light intensity change?',
+        options: [
+          'It increases by a factor of 9',
+          'It increases by a factor of 3',
+          'It decreases by a factor of 9',
+          'It increases by a factor of 6'
+        ],
+        answer: 0,
+        explanation: 'Reducing distance to 1/3 changes intensity by 1 / (1/3)² = 3² = 9 times greater light intensity.'
+      },
+      {
+        id: 23,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'A lamp is positioned 0.25 m (25 cm) from a beaker of pondweed. Calculate the relative light intensity using 1 / d² (in m⁻²).',
+        options: ['16 m⁻²', '4 m⁻²', '0.0625 m⁻²', '8 m⁻²'],
+        answer: 0,
+        explanation: '1 / d² = 1 / (0.25)² = 1 / 0.0625 = 16 m⁻².'
+      },
+      {
+        id: 24,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'On a multi-line graph showing photosynthesis rate vs light intensity, Curve A is at 20 °C and 0.04% CO₂, Curve B is at 20 °C and 0.4% CO₂, and Curve C is at 30 °C and 0.4% CO₂. Curve C levels off higher than Curve B, which levels off higher than Curve A. What proves that temperature was limiting Curve B at high light intensity?',
+        options: [
+          'Raising the temperature from 20 °C to 30 °C (while keeping CO₂ at 0.4%) caused the maximum plateau rate to increase further from Curve B to Curve C',
+          'Both Curve B and Curve C start at the origin (0,0)',
+          'Curve A and Curve B follow the exact same line at very low light intensity',
+          'Increasing light intensity above 50 arbitrary units has no effect on Curve C'
+        ],
+        answer: 0,
+        explanation: 'When increasing temperature at 0.4% CO₂ raises the plateau (B → C), it demonstrates that temperature was the limiting factor on Curve B.'
+      },
+      {
+        id: 25,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'In commercial greenhouses, growers often burn paraffin or propane heaters. What TWO limiting factors of photosynthesis do paraffin heaters simultaneously increase?',
+        options: [
+          'Temperature (heat energy) and carbon dioxide concentration (from combustion of fuel)',
+          'Light intensity and soil nitrate concentration',
+          'Atmospheric oxygen concentration and wind speed',
+          'Chlorophyll concentration and humidity'
+        ],
+        answer: 0,
+        explanation: 'Burning hydrocarbons (like paraffin/natural gas) releases both thermal energy (raising temperature) and CO₂ gas, boosting photosynthesis.'
+      },
+      {
+        id: 26,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'Why must a commercial tomato grower weigh up the economics of increasing heating, artificial lighting, and CO₂ enrichment in a greenhouse?',
+        options: [
+          'Beyond the point where another factor becomes limiting (or yield plateaus), the extra cost of electricity/fuel/CO₂ exceeds the financial value of the extra crop yield produced, reducing profit',
+          'Because plants stop growing completely if CO₂ rises above 0.04%',
+          'Because artificial lights always denature plant enzymes',
+          'Because greenhouses are illegal to heat during the daytime'
+        ],
+        answer: 0,
+        explanation: 'Farmers aim for maximum profit rather than just maximum rate: once a factor is no longer limiting, spending more money on it yields no extra biomass/revenue.'
+      },
+      {
+        id: 27,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'How does maintaining optimal conditions (warmth, high CO₂, bright light, regular watering/fertiliser) in a commercial greenhouse increase crop yield?',
+        options: [
+          'It removes limiting factors so photosynthesis occurs at its maximum rate, producing more glucose for respiration and synthesis of proteins, cellulose, and starch for faster growth',
+          'It forces plants to carry out anaerobic fermentation to make sweeter fruit',
+          'It stops plants from respiring so they never use up any glucose',
+          'It turns all weed seeds into crop seeds'
+        ],
+        answer: 0,
+        explanation: 'Removing limiting factors maximises photosynthesis, generating more glucose for energy transfer and building new plant biomass.'
+      },
+      {
+        id: 28,
+        tier: 'separate',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'In Separate Biology, why might a commercial grower choose LED grow-lights over traditional incandescent filament lamps to boost photosynthesis?',
+        options: [
+          'LEDs emit specific red and blue wavelengths strongly absorbed by chlorophyll while transferring very little waste heat, avoiding overheating/denaturing leaves and lowering electricity costs',
+          'LEDs emit green light, which is the only wavelength absorbed by chlorophyll',
+          'LEDs release carbon dioxide gas directly from the bulb',
+          'LEDs eliminate the need for plants to absorb water through their roots'
+        ],
+        answer: 0,
+        explanation: 'Chlorophyll absorbs red and blue light most strongly (reflecting green); LEDs target these wavelengths efficiently without excessive heat stress.'
+      },
+      {
+        id: 29,
+        tier: 'separate',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'In Separate Biology, a greenhouse grower raises CO₂ concentration from 0.04% to 0.12% at 25 °C and high light, increasing tomato yield by 28%. If the crop revenue increases by £1,400 per week and the extra CO₂ costs £450 per week, what is the net weekly profit gain?',
+        options: ['£950 per week', '£1,850 per week', '£450 per week', '£392 per week'],
+        answer: 0,
+        explanation: 'Net profit gain = extra revenue − extra cost = £1,400 − £450 = £950 per week.'
+      },
+      {
+        id: 30,
+        tier: 'separate',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'Why can pumping excessive CO₂ (e.g. above 1%) into a greenhouse actually reduce the rate of photosynthesis?',
+        options: [
+          'Very high CO₂ levels can cause stomata to close and acidify leaf tissues, restricting gas exchange and impairing photosynthetic enzymes',
+          'CO₂ turns into solid dry ice at 25 °C',
+          'CO₂ blocks all light from passing through the glass roof',
+          'CO₂ causes roots to rot immediately'
+        ],
+        answer: 0,
+        explanation: 'Commercial enrichment typically targets ~0.08–0.15% CO₂; excessively high levels trigger stomatal closure and physiological stress.'
+      },
+      {
+        id: 31,
+        tier: 'foundation',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'On a warm, sunny afternoon in a field with plenty of water, which factor is most often the natural limiting factor for photosynthesis in outdoor crops?',
+        options: [
+          'Carbon dioxide concentration (which is only ~0.04% in the atmosphere)',
+          'Light intensity',
+          'Temperature',
+          'Oxygen concentration'
+        ],
+        answer: 0,
+        explanation: 'Atmospheric CO₂ is low (~0.04%), so on bright, warm days it is commonly the factor limiting the rate of photosynthesis.'
+      },
+      {
+        id: 32,
+        tier: 'higher',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'If a lamp is moved from 15 cm to 45 cm away from pondweed, what fraction of the original light intensity reaches the plant?',
+        options: ['1/9', '1/3', '1/6', '1/30'],
+        answer: 0,
+        explanation: 'Distance increases by 45 ÷ 15 = 3 times. By the inverse square law, light intensity becomes 1 / 3² = 1/9.'
+      },
+      {
+        id: 33,
+        tier: 'separate',
+        topic: 'Limiting Factors & Greenhouses',
+        isPractical: false,
+        q: 'In a greenhouse experiment, raising temperature from 15 °C to 25 °C doubled the rate of photosynthesis at high light intensity, whereas raising temperature from 15 °C to 25 °C at very low light intensity had almost no effect. Why?',
+        options: [
+          'At very low light intensity, light was the limiting factor, so increasing temperature could not speed up the overall rate',
+          'Enzymes do not work at all in dim light',
+          'At low light intensity, carbon dioxide evaporates out of the leaves',
+          'Temperature only affects respiration, never photosynthesis'
+        ],
+        answer: 0,
+        explanation: 'Increasing a non-limiting factor (temperature) has no effect on the rate while another factor (light intensity) remains limiting.'
+      },
+
+      // -------------------- TOPIC 3: USES OF GLUCOSE (13) --------------------
+      {
+        id: 34,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Which five ways do plants use the glucose produced during photosynthesis?',
+        options: [
+          'For respiration, converted into insoluble starch for storage, used to produce fats/oils for storage, used to produce cellulose for cell walls, and combined with nitrate ions to produce amino acids for protein synthesis',
+          'For digestion, converted into glycogen in the liver, used to make haemoglobin, excreted in urine, and converted into hydrochloric acid',
+          'Stored as liquid glucose in xylem, converted into bile, used to make chitin, and released through stomata',
+          'Converted into lactic acid, used to make antibodies, stored in the gall bladder, and converted into urea'
+        ],
+        answer: 0,
+        explanation: 'AQA lists five uses of glucose in plants: (1) respiration, (2) insoluble starch storage, (3) fats/oils storage, (4) cellulose cell walls, and (5) amino acids/proteins (with nitrate ions).'
+      },
+      {
+        id: 35,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Why do plants convert excess glucose into insoluble starch for storage in leaves, roots, and tubers rather than storing large amounts of soluble glucose?',
+        options: [
+          'Starch is insoluble in water, so it does not affect the water concentration (osmotic balance) of cells or cause water to enter by osmosis and swell/damage the cells',
+          'Starch contains more carbon atoms than glucose',
+          'Glucose is toxic to plant mitochondria',
+          'Starch can be transported rapidly through dead xylem vessels'
+        ],
+        answer: 0,
+        explanation: 'Because starch is insoluble, storing it inside plastids/amyloplasts does not lower the water potential of the cell sap or draw in excessive water by osmosis.'
+      },
+      {
+        id: 36,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Which mineral ion must plants absorb from the soil to combine with glucose in order to make amino acids (which are then used to synthesise proteins)?',
+        options: ['Nitrate ions (NO₃⁻)', 'Magnesium ions (Mg²⁺)', 'Chloride ions (Cl⁻)', 'Sodium ions (Na⁺)'],
+        answer: 0,
+        explanation: 'Glucose only contains C, H, and O; amino acids also require nitrogen, which plants obtain by absorbing nitrate ions from the soil via active transport.'
+      },
+      {
+        id: 37,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Which structural carbohydrate polymer is made from glucose molecules to strengthen plant cell walls?',
+        options: ['Cellulose', 'Glycogen', 'Starch', 'Haemoglobin'],
+        answer: 0,
+        explanation: 'Glucose molecules are joined together to form tough cellulose fibres that give plant cell walls strength and rigidity.'
+      },
+      {
+        id: 38,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Where do plants commonly store fats and oils synthesised from glucose?',
+        options: [
+          'In seeds (e.g. sunflower seeds, rapeseed, peanuts) as a compact, high-energy store for germination',
+          'Inside the dead hollow tubes of xylem',
+          'On the outside of the waxy cuticle',
+          'Inside the air spaces of the spongy mesophyll'
+        ],
+        answer: 0,
+        explanation: 'Lipids (fats and oils) store roughly twice as much energy per gram as carbohydrates, making them ideal compact energy reserves in seeds.'
+      },
+      {
+        id: 39,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'How can you test a green leaf to prove that photosynthesis has taken place and produced starch?',
+        options: [
+          'Boil the leaf in water to kill it/soften it, boil in ethanol (in a water bath) to remove green chlorophyll, rinse in warm water, and add iodine solution (turns blue-black)',
+          'Grind the leaf with Biuret solution and look for a purple colour',
+          'Heat the leaf with Benedict’s solution until it turns brick-red',
+          'Place the leaf in limewater and watch it turn milky'
+        ],
+        answer: 0,
+        explanation: 'Removing chlorophyll with hot ethanol decolorises the leaf so the blue-black colour change of iodine with starch can be clearly seen.'
+      },
+      {
+        id: 40,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'During the starch test on a leaf, why is the leaf boiled in ethanol using a hot water bath (with Bunsen burners turned off) rather than over a naked flame?',
+        options: [
+          'Ethanol is highly flammable and would catch fire near a naked Bunsen flame',
+          'Ethanol freezes if heated directly over a Bunsen flame',
+          'The Bunsen flame turns starch into cellulose',
+          'Ethanol only dissolves chlorophyll below 10 °C'
+        ],
+        answer: 0,
+        explanation: 'Ethanol has a boiling point around 78 °C and is flammable, so heating it in a beaker of hot water away from naked flames prevents ignition.'
+      },
+      {
+        id: 41,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Why does a plant kept in a dark cupboard for 48 hours ("destarching") test negative (orange-brown) when tested with iodine solution?',
+        options: [
+          'In the dark, no photosynthesis occurs, so the plant breaks down its stored starch back into glucose for respiration',
+          'Darkness causes the starch to evaporate out of the stomata',
+          'Iodine solution does not work on leaves kept in the dark',
+          'The plant converts all its starch into nitrate ions'
+        ],
+        answer: 0,
+        explanation: 'Without light, photosynthesis stops; the plant hydrolyses stored starch into soluble glucose to fuel continuous cellular respiration.'
+      },
+      {
+        id: 42,
+        tier: 'higher',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Why do plants need to transport sucrose (made from glucose) through the phloem to root cells even though root cells cannot photosynthesise?',
+        options: [
+          'Root cells require glucose for aerobic respiration to release energy (ATP) for active transport of mineral ions (like nitrates) from the soil, and for growth',
+          'Root cells convert sucrose into chlorophyll to absorb underground light',
+          'Root cells release sucrose into the soil to feed earthworms',
+          'Root cells use sucrose to make hydrochloric acid'
+        ],
+        answer: 0,
+        explanation: 'Non-photosynthetic root cells depend on translocated sugars for aerobic respiration to power active transport of mineral ions and build cellulose/proteins.'
+      },
+      {
+        id: 43,
+        tier: 'higher',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'Which chemical elements are present in glucose, starch, cellulose, and lipids, compared to the elements present in amino acids and proteins?',
+        options: [
+          'Carbohydrates and lipids contain Carbon, Hydrogen, and Oxygen (C, H, O); amino acids and proteins also contain Nitrogen (N)',
+          'Carbohydrates contain Nitrogen, whereas proteins contain only Carbon and Water',
+          'All four groups contain Magnesium and Iron',
+          'Lipids contain only Hydrogen and Oxygen with no Carbon'
+        ],
+        answer: 0,
+        explanation: 'Glucose, starch, cellulose, and fats/oils consist of C, H, and O; adding nitrogen from nitrate ions enables amino acid and protein synthesis.'
+      },
+      {
+        id: 44,
+        tier: 'separate',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'In Separate Biology, a seedling is grown in a culture solution containing all essential mineral ions EXCEPT nitrate ions. What happens to the seedling’s growth and why?',
+        options: [
+          'It shows severely stunted growth because nitrate ions are needed with glucose to make amino acids for protein synthesis (enzymes and structural proteins for new cells)',
+          'It grows twice as tall because it does not waste energy absorbing nitrates',
+          'Its leaves turn bright blue due to excess glucose',
+          'It stops absorbing water by osmosis completely'
+        ],
+        answer: 0,
+        explanation: 'Nitrate deficiency prevents amino acid and protein synthesis, halting cell division and new tissue growth.'
+      },
+      {
+        id: 45,
+        tier: 'separate',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'During seed germination underground (before shoots reach the light), how does the embryo plant obtain energy and materials to grow its first root and shoot?',
+        options: [
+          'Enzymes break down stored insoluble starch and oils in the seed into soluble glucose and fatty acids/glycerol, which are respired to transfer energy and used to make cellulose cell walls',
+          'The seed carries out photosynthesis using infrared heat from the soil',
+          'The seed absorbs glucose directly from soil bacteria',
+          'The seed uses anaerobic lactic acid fermentation exclusively'
+        ],
+        answer: 0,
+        explanation: 'Germinating seeds rely on hydrolysing stored starch and lipid reserves to supply glucose for respiration and cellulose synthesis until leaves emerge into light.'
+      },
+      {
+        id: 46,
+        tier: 'foundation',
+        topic: 'Uses of Glucose',
+        isPractical: false,
+        q: 'What is the immediate cellular use of glucose in BOTH plant cells and animal cells?',
+        options: [
+          'Cellular respiration to transfer energy for metabolic processes',
+          'Synthesis of cellulose cell walls',
+          'Storage as insoluble starch grains',
+          'Absorption of sunlight in chloroplasts'
+        ],
+        answer: 0,
+        explanation: 'All living plant and animal cells respire glucose to release energy needed for life processes.'
+      },
+
+      // -------------------- TOPIC 4: REQUIRED PRACTICALS ONLY (26 QUESTIONS) --------------------
+      {
+        id: 47,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In the photosynthesis required practical (RP6 Combined / RP5 Separate), why is an aquatic plant such as pondweed (Elodea or Cabomba) used instead of a terrestrial land plant?',
+        options: [
+          'Because oxygen gas produced during photosynthesis is released as visible bubbles in water, which can be counted or collected in a gas syringe to measure the rate of photosynthesis',
+          'Because land plants do not carry out photosynthesis',
+          'Because pondweed does not need carbon dioxide or enzymes',
+          'Because pondweed can survive in boiling water at 100 °C'
+        ],
+        answer: 0,
+        explanation: 'Submerged pondweed releases oxygen bubbles directly into the water, allowing easy measurement of gas volume or bubble rate.'
+      },
+      {
+        id: 48,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In the pondweed light intensity investigation, what are the independent, dependent, and key control variables?',
+        options: [
+          'Independent: light intensity (distance of lamp from pondweed); Dependent: rate of photosynthesis (number of oxygen bubbles per minute or volume of O₂ produced); Control: temperature, CO₂ concentration, and same piece/species of pondweed',
+          'Independent: number of bubbles per minute; Dependent: distance of lamp; Control: stopwatch brand',
+          'Independent: temperature of room; Dependent: mass of sodium hydrogen carbonate; Control: lamp distance',
+          'Independent: species of pondweed; Dependent: water volume; Control: time of day'
+        ],
+        answer: 0,
+        explanation: 'We vary light intensity (independent), measure oxygen production rate (dependent), and keep temperature, CO₂ supply, and pondweed specimen constant.'
+      },
+      {
+        id: 49,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'Why is sodium hydrogen carbonate (NaHCO₃) powder often added to the water containing the pondweed in Required Practical 6?',
+        options: [
+          'It dissolves to release carbon dioxide into the water, ensuring that CO₂ concentration is in excess and does not become a limiting factor',
+          'It absorbs oxygen bubbles so they do not burst',
+          'It lowers the temperature of the water to 5 °C',
+          'It acts as a stain to turn the pondweed leaves blue-black'
+        ],
+        answer: 0,
+        explanation: 'Adding sodium hydrogen carbonate provides a rich, constant supply of dissolved CO₂ so CO₂ does not limit photosynthesis during the light intensity test.'
+      },
+      {
+        id: 50,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'Why should you place a large beaker of water (or heat shield) between the lamp and the boiling tube of pondweed, or use an LED lamp?',
+        options: [
+          'To absorb thermal energy (heat) from the lamp so the temperature of the water around the pondweed remains constant (temperature is a control variable)',
+          'To magnify the light beam onto a single leaf',
+          'To stop oxygen gas from dissolving into the water',
+          'To filter out all red and blue wavelengths of light'
+        ],
+        answer: 0,
+        explanation: 'Filament lamps emit heat; placing a water bath/heat shield or using a cool LED prevents temperature changes from confounding the effect of light intensity.'
+      },
+      {
+        id: 51,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'After moving the lamp to a new distance from the pondweed, why should you wait 2–3 minutes before starting to count oxygen bubbles?',
+        options: [
+          'To allow the pondweed to acclimatise/adjust to the new light intensity and reach a steady rate of photosynthesis',
+          'To let the water cool down to freezing point',
+          'To give the lamp time to warm up to maximum brightness',
+          'To allow all the sodium hydrogen carbonate to evaporate'
+        ],
+        answer: 0,
+        explanation: 'Equilibrating for a few minutes ensures the rate of photosynthesis has stabilised at the new light intensity before recording data.'
+      },
+      {
+        id: 52,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'Why is the cut stem of the pondweed placed facing UPWARDS inside the boiling tube of water?',
+        options: [
+          'So the stream of oxygen bubbles escapes smoothly from the cut xylem/air spaces into the water where they can be clearly seen and counted',
+          'Because roots grow out of the top of the stem',
+          'So light only hits the bottom of the boiling tube',
+          'To stop water entering the cut stem'
+        ],
+        answer: 0,
+        explanation: 'Bubbles emerge steadily from the cut end of the stem; pointing it upwards prevents bubbles getting trapped under leaves.'
+      },
+      {
+        id: 53,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In a pondweed experiment, 42 bubbles of oxygen were counted in 3 minutes when the lamp was 15 cm away. What is the mean rate of bubble production in bubbles per minute?',
+        options: ['14 bubbles/min', '126 bubbles/min', '42 bubbles/min', '5 bubbles/min'],
+        answer: 0,
+        explanation: 'Rate = 42 bubbles ÷ 3 minutes = 14 bubbles/min.'
+      },
+      {
+        id: 54,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'What is a major limitation of measuring photosynthesis rate simply by counting bubbles released from pondweed, and how can the method be improved?',
+        options: [
+          'Bubbles can vary in size and may be released too fast to count accurately by eye; improve by collecting the gas in an inverted measuring cylinder or gas syringe and measuring the exact volume (cm³) produced in a set time',
+          'Pondweed releases carbon dioxide bubbles instead of oxygen; improve by adding limewater',
+          'Bubbles sink to the bottom of the beaker; improve by stirring the water constantly',
+          'Counting bubbles only works in the dark; improve by turning off the lamp'
+        ],
+        answer: 0,
+        explanation: 'Bubble volumes are inconsistent and fast bubbling is hard to count; measuring gas volume in a gas syringe or inverted measuring cylinder gives much higher accuracy and resolution.'
+      },
+      {
+        id: 55,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In Required Practical 6, a student records: at 10 cm, 80 bubbles/min; at 20 cm, 20 bubbles/min; at 40 cm, 5 bubbles/min. Explain mathematically how this data confirms the inverse square law.',
+        options: [
+          'Each time the distance doubles (10 → 20 → 40 cm), the light intensity and bubble rate fall by a factor of 4 (1/2² = 1/4: 80 → 20 → 5 bubbles/min)',
+          'Each time the distance doubles, the bubble rate halves',
+          'The bubble rate is directly proportional to distance',
+          'Each time the distance increases by 10 cm, 60 bubbles are lost'
+        ],
+        answer: 0,
+        explanation: 'Doubling distance quarters light intensity (1/2² = 1/4): 80 ÷ 4 = 20, and 20 ÷ 4 = 5, directly matching the inverse square relationship.'
+      },
+      {
+        id: 56,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In the pondweed practical, when the lamp is moved very close (e.g. from 10 cm to 5 cm), the rate of photosynthesis stays at 84 bubbles/min instead of quadrupling to 336 bubbles/min. Why?',
+        options: [
+          'Light intensity is no longer the limiting factor; another factor such as CO₂ concentration or temperature is now limiting the rate of photosynthesis',
+          'The inverse square law stops working below 10 cm',
+          'The pondweed has run out of water inside the boiling tube',
+          'Oxygen bubbles dissolve completely at 5 cm'
+        ],
+        answer: 0,
+        explanation: 'At very high light intensity (close lamp), the plant reaches light saturation where CO₂ availability or enzyme temperature limits any further increase.'
+      },
+      {
+        id: 57,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'How can you confirm experimentally that the gas collected in the inverted measuring cylinder above illuminated pondweed is oxygen?',
+        options: [
+          'Insert a glowing wooden splint into the collected gas; it will relight if oxygen is present',
+          'Bubble the gas through limewater; it will turn milky/cloudy',
+          'Hold a lit splint at the mouth of the tube; it will burn with a squeaky pop',
+          'Add damp blue litmus paper; it will be bleached white'
+        ],
+        answer: 0,
+        explanation: 'The standard chemical test for oxygen gas is that it relights a glowing splint.'
+      },
+      {
+        id: 58,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In a repeat trial of the pondweed practical at 20 cm, a student records 24, 26, 9, and 25 bubbles per minute. How should the student handle the result of 9 bubbles/min when calculating the mean?',
+        options: [
+          'Identify 9 as an anomalous result, exclude it from the calculation, and find the mean of the concordant results: (24 + 26 + 25) ÷ 3 = 25 bubbles/min',
+          'Include 9 in the mean: (24 + 26 + 9 + 25) ÷ 4 = 21 bubbles/min',
+          'Change 9 to 25 without repeating the reading',
+          'Discard all four readings and end the experiment'
+        ],
+        answer: 0,
+        explanation: 'Anomalous results that do not fit the pattern (such as 9, perhaps due to a trapped bubble) should be identified, excluded from the mean, and ideally repeated.'
+      },
+      {
+        id: 59,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'Why must the SAME piece of pondweed be used across all distances in a single set of trials?',
+        options: [
+          'Different pieces of pondweed have different numbers of leaves and different amounts of chlorophyll, which would affect the rate of photosynthesis (control variable)',
+          'Because pondweed only grows in one specific boiling tube',
+          'Because using a new piece would change the distance to the lamp',
+          'Because older pondweed produces nitrogen instead of oxygen'
+        ],
+        answer: 0,
+        explanation: 'Keeping the same sprig of pondweed keeps leaf surface area and total chlorophyll content constant.'
+      },
+      {
+        id: 60,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'Why is it advisable to carry out the pondweed light intensity practical in a darkened room (with blinds closed and room lights off)?',
+        options: [
+          'To eliminate background ambient light so the only light reaching the pondweed comes from the experimental lamp at the measured distance',
+          'Because pondweed cannot photosynthesise in daylight',
+          'To keep the temperature of the laboratory below 10 °C',
+          'So the bubbles glow in the dark'
+        ],
+        answer: 0,
+        explanation: 'Background sunlight or ceiling lamps add uncontrolled light intensity, especially when the experimental lamp is far away; working in a darkened room ensures valid light readings.'
+      },
+      {
+        id: 61,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'If a student wanted to adapt the pondweed practical to investigate the effect of TEMPERATURE on the rate of photosynthesis, how should they change the method?',
+        options: [
+          'Keep the lamp at a fixed distance (e.g. 10 cm) and excess NaHCO₃ constant, and place the boiling tube in thermostatically controlled water baths at different temperatures (e.g. 10 °C, 20 °C, 30 °C, 40 °C, 50 °C)',
+          'Move the lamp to five different distances without changing the water temperature',
+          'Add five different masses of NaHCO₃ at room temperature',
+          'Use five different colours of cellophane around the lamp'
+        ],
+        answer: 0,
+        explanation: 'To test temperature as the independent variable, light intensity (lamp distance) and CO₂ concentration must be kept constant while water bath temperature is varied.'
+      },
+      {
+        id: 62,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In an investigation into the rate of anaerobic respiration (fermentation) in yeast at different temperatures, a layer of liquid paraffin is poured on top of the yeast and glucose mixture. Why?',
+        options: [
+          'To act as an oil barrier preventing oxygen from the air dissolving into the mixture, ensuring the yeast respires anaerobically',
+          'To provide extra glucose for the yeast to respire',
+          'To kill any bacteria in the test tube',
+          'To absorb the carbon dioxide bubbles produced'
+        ],
+        answer: 0,
+        explanation: 'Liquid paraffin floats on top and seals the yeast suspension from atmospheric oxygen, forcing anaerobic fermentation.'
+      },
+      {
+        id: 63,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In the yeast respiration practical, gas bubbles from the fermenting yeast are passed through a delivery tube into limewater. What colour change occurs in the limewater, and which gas does this prove is released?',
+        options: [
+          'Limewater turns from colourless to milky/cloudy white, proving carbon dioxide is produced',
+          'Limewater turns from orange-brown to blue-black, proving starch is produced',
+          'Limewater turns from blue to brick-red, proving glucose is produced',
+          'Limewater turns from blue to purple, proving protein is produced'
+        ],
+        answer: 0,
+        explanation: 'Carbon dioxide reacts with calcium hydroxide solution (limewater) to form an insoluble white precipitate of calcium carbonate.'
+      },
+      {
+        id: 64,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In a respiration practical using germinating peas inside a closed respirometer tube, soda lime (or potassium hydroxide) is placed inside the tube to absorb carbon dioxide. As the peas respire aerobically, why does the coloured liquid drop in the capillary tube move TOWARDS the peas?',
+        options: [
+          'The peas absorb oxygen for aerobic respiration, and because all carbon dioxide produced is absorbed by the soda lime, the total volume and pressure of gas inside the tube decreases, drawing the liquid drop inwards',
+          'The peas release nitrogen gas which pushes the liquid drop inwards',
+          'The soda lime heats up the air and makes it expand',
+          'The peas absorb the coloured liquid by osmosis'
+        ],
+        answer: 0,
+        explanation: 'With CO₂ absorbed by soda lime, any decrease in gas volume equals the exact volume of oxygen consumed by aerobic respiration.'
+      },
+      {
+        id: 65,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In a respirometer practical, why is a second control tube containing glass beads of the same volume as the germinating peas set up alongside the experimental tube?',
+        options: [
+          'To account for any changes in gas volume caused by small fluctuations in room temperature or atmospheric pressure during the experiment',
+          'To see if glass beads carry out photosynthesis',
+          'To supply extra oxygen to the germinating peas',
+          'To absorb excess water vapour from the air'
+        ],
+        answer: 0,
+        explanation: 'Glass beads are non-living; any movement of the marker in the control tube reflects physical temperature/pressure changes, allowing true biological respiration to be calculated.'
+      },
+      {
+        id: 66,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In a pondweed practical, a student collects 3.6 cm³ of oxygen in 15 minutes at 20 cm lamp distance. Calculate the rate of oxygen production in cm³/hour.',
+        options: ['14.4 cm³/hour', '0.24 cm³/hour', '54.0 cm³/hour', '3.6 cm³/hour'],
+        answer: 0,
+        explanation: '15 minutes is 0.25 hours (1/4 hour). Rate = 3.6 cm³ × 4 = 14.4 cm³/hour.'
+      },
+      {
+        id: 67,
+        tier: 'separate',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In Separate Biology, a student uses hydrogen carbonate indicator solution (which is red at atmospheric CO₂, yellow at high CO₂, and purple at low CO₂) with pondweed in sealed tubes. What colour will the indicator turn in a tube placed in bright light vs a tube wrapped in black foil?',
+        options: [
+          'Bright light: purple (photosynthesis uses up CO₂ faster than respiration produces it); Black foil (dark): yellow (only respiration occurs, releasing CO₂)',
+          'Bright light: yellow; Black foil: purple',
+          'Both tubes turn blue-black',
+          'Bright light: red; Black foil: colourless'
+        ],
+        answer: 0,
+        explanation: 'In bright light, net CO₂ uptake lowers dissolved CO₂ (indicator turns purple); in darkness, respiration releases CO₂, forming carbonic acid (indicator turns yellow).'
+      },
+      {
+        id: 68,
+        tier: 'separate',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In the hydrogen carbonate indicator practical, a third tube containing pondweed is wrapped in translucent tissue paper (dim light) and the indicator stays red for 2 hours. What does this show?',
+        options: [
+          'The plant is at its compensation point: the rate of CO₂ absorbed by photosynthesis equals the rate of CO₂ released by respiration, so there is no net change in CO₂',
+          'The indicator solution has expired',
+          'The pondweed is dead and not respiring',
+          'Tissue paper blocks all wavelengths of light completely'
+        ],
+        answer: 0,
+        explanation: 'No colour change from red means net CO₂ exchange is zero because photosynthetic CO₂ consumption balances respiratory CO₂ production.'
+      },
+      {
+        id: 69,
+        tier: 'foundation',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'What safety hazard is associated with using a mains-powered lamp next to a beaker of water in the photosynthesis practical, and how should it be controlled?',
+        options: [
+          'Risk of electric shock if water splashes onto the lamp or plug, plus burn risk from hot bulbs; keep electrical leads/plugs away from water, dry hands before touching switches, and avoid touching hot bulbs',
+          'Risk of toxic chlorine gas escaping from the pondweed; wear a gas mask',
+          'Risk of sodium hydrogen carbonate exploding; keep in a freezer',
+          'Risk of the water freezing; wear thermal gloves'
+        ],
+        answer: 0,
+        explanation: 'Water and mains electricity pose an electrocution hazard, and filament lamps get very hot; keeping water away from sockets/cables and using low-voltage LED lamps minimises risk.'
+      },
+      {
+        id: 70,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In an investigation into yeast anaerobic respiration, a student measures CO₂ volume produced over 10 minutes at 15 °C (4 cm³), 25 °C (11 cm³), 35 °C (24 cm³), 45 °C (16 cm³), and 60 °C (0 cm³). Why did 0 cm³ of gas form at 60 °C?',
+        options: [
+          'At 60 °C, the respiratory enzymes inside the yeast cells were denatured (active sites permanently changed shape), stopping respiration completely',
+          'At 60 °C, all the carbon dioxide dissolved into the liquid paraffin',
+          'At 60 °C, the yeast switched to photosynthesis',
+          'At 60 °C, the glucose turned into solid starch'
+        ],
+        answer: 0,
+        explanation: 'High temperature denatures respiratory enzymes in yeast, halting fermentation.'
+      },
+      {
+        id: 71,
+        tier: 'separate',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'When using a Audus microburette or gas syringe to measure oxygen volume from pondweed, why is it important to ensure there are no air leaks around the rubber bung?',
+        options: [
+          'Any leak allows produced oxygen gas to escape into the room instead of pushing the syringe plunger, causing the measured rate of photosynthesis to be artificially low (systematic error)',
+          'Air leaks let carbon dioxide escape so the pondweed turns yellow',
+          'Air leaks make the water boil at room temperature',
+          'Air leaks cause the ruler to expand'
+        ],
+        answer: 0,
+        explanation: 'A gas-tight seal ensures 100% of the evolved oxygen displaces the syringe plunger or meniscus accurately.'
+      },
+      {
+        id: 72,
+        tier: 'higher',
+        topic: 'RP: Photosynthesis & Light Intensity',
+        isPractical: true,
+        q: 'In the pondweed practical, a student plots rate of photosynthesis (y-axis) against 1/d² (x-axis) and obtains a straight line passing through the origin. What conclusion can be drawn from this graph?',
+        options: [
+          'The rate of photosynthesis is directly proportional to light intensity over the range of distances tested',
+          'The rate of photosynthesis is inversely proportional to light intensity',
+          'Temperature was the limiting factor throughout the entire experiment',
+          'Light intensity has no effect on photosynthesis'
+        ],
+        answer: 0,
+        explanation: 'A straight line through the origin when plotting rate against 1/d² confirms direct proportionality between photosynthetic rate and light intensity.'
+      },
+
+      // -------------------- TOPIC 5: AEROBIC & ANAEROBIC RESPIRATION (18) --------------------
+      {
+        id: 73,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Why is cellular respiration described as an exothermic reaction?',
+        options: [
+          'Because it transfers energy to the environment (and to cellular processes) continuously in all living cells',
+          'Because it absorbs light energy from the Sun',
+          'Because it only happens in warm-blooded mammals',
+          'Because it produces glucose and oxygen from carbon dioxide and water'
+        ],
+        answer: 0,
+        explanation: 'Respiration is an exothermic reaction that releases energy continuously in living cells.'
+      },
+      {
+        id: 74,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'What is the correct word equation and balanced symbol equation for aerobic respiration?',
+        options: [
+          'glucose + oxygen → carbon dioxide + water  |  C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O',
+          'glucose → lactic acid  |  C₆H₁₂O₆ → 2C₃H₆O₃',
+          'glucose → ethanol + carbon dioxide  |  C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂',
+          'carbon dioxide + water → glucose + oxygen  |  6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂'
+        ],
+        answer: 0,
+        explanation: 'Aerobic respiration uses oxygen to completely oxidise glucose into carbon dioxide and water, transferring a large amount of energy.'
+      },
+      {
+        id: 75,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Where inside eukaryotic cells do the majority of the reactions of aerobic respiration take place?',
+        options: ['Mitochondria', 'Chloroplasts', 'Ribosomes', 'Cell wall'],
+        answer: 0,
+        explanation: 'Mitochondria contain the enzymes required for aerobic respiration; active cells (like muscle and sperm cells) have many mitochondria.'
+      },
+      {
+        id: 76,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Which three main uses do organisms have for the energy transferred by cellular respiration?',
+        options: [
+          'To build larger molecules from smaller ones (chemical synthesis), to enable muscle contraction in animals, and to maintain a steady body temperature in mammals and birds',
+          'To absorb light energy, to make xylem tubes, and to digest food in the stomach',
+          'To pump water into plant roots by osmosis, to make chlorophyll, and to diffuse oxygen in alveoli',
+          'To produce antibiotics, to form scabs, and to break down red blood cells'
+        ],
+        answer: 0,
+        explanation: 'AQA specifies three uses of respiratory energy: building larger molecules (proteins, starch/glycogen, lipids), muscular contraction for movement, and keeping warm in cold surroundings.'
+      },
+      {
+        id: 77,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'When does anaerobic respiration take place in human muscle cells, and what is its word equation?',
+        options: [
+          'When there is insufficient oxygen reaching muscles during vigorous exercise; glucose → lactic acid',
+          'When resting quietly asleep; glucose + oxygen → carbon dioxide + water',
+          'When eating a meal rich in starch; glucose → ethanol + carbon dioxide',
+          'When body temperature drops below 35 °C; starch → glucose'
+        ],
+        answer: 0,
+        explanation: 'During intense exercise, oxygen supply cannot keep pace with demand, so muscle cells respire anaerobically: glucose → lactic acid.'
+      },
+      {
+        id: 78,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Why does anaerobic respiration transfer much LESS energy per glucose molecule than aerobic respiration?',
+        options: [
+          'Because the oxidation of glucose is incomplete (lactic acid or ethanol still contains locked-up chemical energy)',
+          'Because anaerobic respiration happens in the chloroplasts instead of mitochondria',
+          'Because anaerobic respiration uses up energy instead of releasing it',
+          'Because oxygen destroys half of the glucose molecules'
+        ],
+        answer: 0,
+        explanation: 'In aerobic respiration, glucose is completely oxidised to CO₂ and H₂O; in anaerobic respiration, incomplete breakdown leaves energy remaining in lactic acid or ethanol.'
+      },
+      {
+        id: 79,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'What is the word equation for anaerobic respiration in plant cells and yeast cells?',
+        options: [
+          'glucose → ethanol + carbon dioxide',
+          'glucose → lactic acid',
+          'glucose + oxygen → carbon dioxide + water',
+          'ethanol + oxygen → glucose + water'
+        ],
+        answer: 0,
+        explanation: 'In plants and yeast, anaerobic respiration produces ethanol (an alcohol) and carbon dioxide gas (rather than lactic acid).'
+      },
+      {
+        id: 80,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'What is anaerobic respiration in yeast cells called, and why is it economically important in the food and drink industries?',
+        options: [
+          'Fermentation; used in bread making (carbon dioxide bubbles make bread dough rise) and in brewing alcoholic drinks (produces ethanol)',
+          'Photosynthesis; used to make sugar and oxygen in greenhouses',
+          'Emulsification; used to break down fats in cheese making',
+          'Translocation; used to preserve fresh fruit juice'
+        ],
+        answer: 0,
+        explanation: 'Yeast fermentation produces CO₂ (which expands when baked to make bread light and airy) and ethanol (used in brewing beer and wine).'
+      },
+      {
+        id: 81,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'What happens to the small amount of ethanol produced inside bread dough during fermentation when the dough is baked in a hot oven?',
+        options: [
+          'The ethanol evaporates away due to the high baking temperature, while the trapped carbon dioxide bubbles expand to make the bread rise',
+          'The ethanol turns into lactic acid and makes the bread sour',
+          'The ethanol stays in the bread and turns it blue-black',
+          'The ethanol kills all the starch molecules'
+        ],
+        answer: 0,
+        explanation: 'Ethanol boils at ~78 °C, so it evaporates completely during baking, leaving soft, risen bread.'
+      },
+      {
+        id: 82,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'How does anaerobic respiration in a human sprinter differ from anaerobic respiration in a waterlogged plant root?',
+        options: [
+          'The sprinter’s muscles produce lactic acid only (no CO₂), whereas the plant root produces ethanol and carbon dioxide',
+          'The sprinter produces ethanol, whereas the plant root produces lactic acid',
+          'Both produce carbon dioxide and water',
+          'Plant roots cannot carry out anaerobic respiration'
+        ],
+        answer: 0,
+        explanation: 'Animal anaerobic respiration yields lactic acid (no CO₂); plant and yeast anaerobic respiration yields ethanol + CO₂.'
+      },
+      {
+        id: 83,
+        tier: 'higher',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'What is the balanced symbol equation for anaerobic respiration (fermentation) in yeast?',
+        options: [
+          'C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂',
+          'C₆H₁₂O₆ → 2C₃H₆O₃',
+          'C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O',
+          '2C₆H₁₂O₆ → C₂H₅OH + CO₂'
+        ],
+        answer: 0,
+        explanation: 'One molecule of glucose (C₆H₁₂O₆) is broken down into two molecules of ethanol (C₂H₅OH) and two molecules of carbon dioxide (CO₂).'
+      },
+      {
+        id: 84,
+        tier: 'higher',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Why do waterlogged soils often kill crop plants such as wheat or potatoes?',
+        options: [
+          'Water fills the air spaces in the soil, depriving root cells of oxygen so they are forced to respire anaerobically—producing toxic ethanol and releasing too little energy for active transport of mineral ions',
+          'Too much water causes root cells to burst open because they lack a cell wall',
+          'Waterlogged soil turns nitrates into hydrochloric acid',
+          'The roots carry out too much photosynthesis underwater'
+        ],
+        answer: 0,
+        explanation: 'Root cells need oxygen for aerobic respiration to generate energy for active transport of mineral ions; prolonged anaerobic ethanol accumulation is toxic to root tissues.'
+      },
+      {
+        id: 85,
+        tier: 'higher',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Aerobic respiration transfers approximately 2,900 kJ of energy per mole of glucose, whereas anaerobic respiration in muscles transfers about 150 kJ per mole. What percentage of the energy available from aerobic respiration is transferred by anaerobic respiration (to 1 decimal place)?',
+        options: ['5.2%', '19.3%', '15.0%', '94.8%'],
+        answer: 0,
+        explanation: '(150 ÷ 2,900) × 100 = 5.17% ≈ 5.2%.'
+      },
+      {
+        id: 86,
+        tier: 'separate',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'In Separate Biology, during industrial bioethanol production using yeast fermentation, why does fermentation eventually slow down and stop even when excess glucose is still present in the fermenter?',
+        options: [
+          'High concentrations of ethanol become toxic to the yeast cells and denature their enzymes, killing the yeast',
+          'The yeast cells run out of mitochondria',
+          'Carbon dioxide turns into oxygen inside the fermenter',
+          'The temperature drops to 0 °C'
+        ],
+        answer: 0,
+        explanation: 'Ethanol is toxic above ~12–15% concentration; it damages yeast cell membranes and denatures fermentation enzymes.'
+      },
+      {
+        id: 87,
+        tier: 'separate',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'In Separate Biology, why do brown fat cells in newborn babies and hibernating mammals contain an unusually high density of mitochondria?',
+        options: [
+          'To carry out high rates of exothermic respiration to generate thermal energy and maintain a steady body temperature without shivering',
+          'To store large quantities of cellulose and starch',
+          'To carry out photosynthesis through the skin',
+          'To produce antibodies against viral infections'
+        ],
+        answer: 0,
+        explanation: 'Respiration is exothermic; dense mitochondria generate heat to maintain core body temperature in cold conditions.'
+      },
+      {
+        id: 88,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Why is it a common exam mistake to confuse "respiration" with "breathing" (ventilation)?',
+        options: [
+          'Breathing is the mechanical movement of air into and out of the lungs, whereas respiration is a chemical reaction inside living cells that releases energy from glucose',
+          'Breathing happens inside mitochondria whereas respiration happens in the windpipe',
+          'Plants breathe with lungs whereas animals only respire',
+          'Respiration only happens when you inhale oxygen'
+        ],
+        answer: 0,
+        explanation: 'Breathing (ventilation) moves air in/out of the lungs; cellular respiration is the intracellular biochemical process transferring energy from glucose.'
+      },
+      {
+        id: 89,
+        tier: 'higher',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Why do flight muscle cells in birds and cardiac muscle cells in the human heart have far more mitochondria and denser capillary networks than skin cells?',
+        options: [
+          'They require a continuous, rapid supply of oxygen and glucose for high rates of aerobic respiration to transfer energy for sustained muscle contraction',
+          'They carry out photosynthesis to make their own glucose',
+          'They store excess urea before excretion',
+          'They divide by mitosis every 20 minutes'
+        ],
+        answer: 0,
+        explanation: 'High mitochondrial density maximises aerobic ATP generation, while dense capillaries deliver oxygen and glucose rapidly and remove CO₂.'
+      },
+      {
+        id: 90,
+        tier: 'foundation',
+        topic: 'Aerobic & Anaerobic Respiration',
+        isPractical: false,
+        q: 'Which statement correctly compares aerobic respiration and photosynthesis?',
+        options: [
+          'Photosynthesis is endothermic and builds glucose using CO₂ and water; aerobic respiration is exothermic and breaks down glucose using oxygen into CO₂ and water',
+          'Both processes are endothermic and occur only in plant chloroplasts',
+          'Aerobic respiration happens only in animals, while photosynthesis happens only in plants',
+          'Photosynthesis releases energy, while aerobic respiration absorbs light energy'
+        ],
+        answer: 0,
+        explanation: 'Photosynthesis stores energy in glucose (endothermic); aerobic respiration releases energy from glucose (exothermic).'
+      },
+
+      // -------------------- TOPIC 6: EXERCISE, OXYGEN DEBT & METABOLISM (18) --------------------
+      {
+        id: 91,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'Which three physiological changes occur in the human body during vigorous exercise to supply muscles with more oxygenated blood and glucose?',
+        options: [
+          'Heart rate increases, breathing rate increases, and breath volume (depth of breathing) increases',
+          'Heart rate decreases, breathing stops, and digestion speeds up',
+          'Sweating stops, blood vessels to muscles constrict, and glycogen increases',
+          'Red blood cells multiply in 10 seconds, stomach acid increases, and body temperature drops to 30 °C'
+        ],
+        answer: 0,
+        explanation: 'During exercise, the body needs more energy, so heart rate, breathing rate, and breath volume all rise to increase blood flow and oxygen/glucose delivery to respiring muscles.'
+      },
+      {
+        id: 92,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'How do muscle cells obtain extra glucose during vigorous exercise?',
+        options: [
+          'Stored insoluble glycogen in muscle cells (and liver) is broken down back into soluble glucose for respiration',
+          'Muscle cells absorb starch directly from the large intestine',
+          'Muscle cells make glucose from carbon dioxide and water',
+          'White blood cells deliver glycogen to the muscles'
+        ],
+        answer: 0,
+        explanation: 'Animals store glucose as glycogen in muscle and liver tissue; during exercise, glycogen is hydrolysed into glucose to fuel respiration.'
+      },
+      {
+        id: 93,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'What happens if vigorous exercise continues for a long period and anaerobic respiration takes place in muscle cells?',
+        options: [
+          'Lactic acid builds up in the muscles, causing muscle fatigue so the muscles stop contracting efficiently',
+          'Ethanol builds up in the muscles and makes them grow larger',
+          'Glucose builds up in the alveoli and stops gas exchange',
+          'Platelets clot the blood inside the leg arteries'
+        ],
+        answer: 0,
+        explanation: 'Accumulation of lactic acid lowers cellular pH and interferes with muscle contraction, leading to muscle fatigue and cramp.'
+      },
+      {
+        id: 94,
+        tier: 'higher',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'What is "oxygen debt" (Excess Post-exercise Oxygen Consumption) after vigorous anaerobic exercise?',
+        options: [
+          'The amount of extra oxygen the body needs after exercise to react with the accumulated lactic acid and remove it from cells',
+          'The volume of carbon dioxide trapped inside the lungs at the end of a race',
+          'The amount of oxygen stored inside muscle haemoglobin before starting a sprint',
+          'The oxygen lost when red blood cells burst during exercise'
+        ],
+        answer: 0,
+        explanation: 'Oxygen debt is the extra oxygen required post-exercise to oxidise and clear the lactic acid built up during anaerobic respiration.'
+      },
+      {
+        id: 95,
+        tier: 'higher',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'Why do a sprinter’s heart rate, breathing rate, and breath volume remain elevated for several minutes AFTER they have finished a 400 m race?',
+        options: [
+          'To continue supplying extra oxygen to repay the oxygen debt—transporting lactic acid in the blood from muscles to the liver to be converted back into glucose (and oxidised)',
+          'Because the sprinter’s heart valves have jammed open',
+          'To digest food inside the stomach faster after running',
+          'Because the brain has forgotten that the race has ended'
+        ],
+        answer: 0,
+        explanation: 'Elevated heart rate keeps blood flowing rapidly to carry lactic acid from muscles to the liver, while deep, rapid breathing supplies the oxygen needed to convert lactic acid back into glucose.'
+      },
+      {
+        id: 96,
+        tier: 'higher',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'Where in the body is lactic acid transported after exercise, and what does this organ convert it back into?',
+        options: [
+          'Blood flowing through the muscles transports lactic acid to the LIVER, where it is converted back into GLUCOSE',
+          'Blood transports lactic acid to the KIDNEYS, where it is excreted in urine',
+          'Blood transports lactic acid to the LUNGS, where it is breathed out as gas',
+          'Blood transports lactic acid to the STOMACH, where it becomes hydrochloric acid'
+        ],
+        answer: 0,
+        explanation: 'AQA Higher Tier specifically states: blood flowing through the muscles transports the lactic acid to the liver where it is converted back into glucose (which can then be respired or stored as glycogen).'
+      },
+      {
+        id: 97,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'What is "metabolism" defined as in the AQA GCSE Biology specification?',
+        options: [
+          'The sum of all the chemical reactions in a cell or the body',
+          'The speed at which food passes through the digestive system',
+          'The rate at which a person runs 100 metres',
+          'The breakdown of starch by amylase in the mouth only'
+        ],
+        answer: 0,
+        explanation: 'Metabolism is the sum of all enzyme-controlled chemical reactions taking place in a cell or the entire organism.'
+      },
+      {
+        id: 98,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'Which of the following is an example of an anabolic (building-up) metabolic reaction in animals?',
+        options: [
+          'The conversion of excess glucose into glycogen for storage in liver and muscle cells, and the synthesis of proteins from amino acids',
+          'The breakdown of glucose into carbon dioxide and water during respiration',
+          'The breakdown of excess proteins into urea',
+          'The digestion of starch into maltose in the small intestine'
+        ],
+        answer: 0,
+        explanation: 'Metabolism includes both synthesis reactions (glucose → glycogen/starch/cellulose, glycerol + 3 fatty acids → lipids, glucose + nitrate ions → amino acids → proteins) and breakdown reactions (respiration, excess protein → urea).'
+      },
+      {
+        id: 99,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'How are lipid molecules synthesised as part of cellular metabolism?',
+        options: [
+          'One molecule of glycerol is combined with three molecules of fatty acids',
+          'Hundreds of glucose molecules are joined in a straight chain',
+          'Amino acids are joined together by ribosomes',
+          'Nitrate ions are combined with carbon dioxide'
+        ],
+        answer: 0,
+        explanation: 'Lipids (fats and oils) are formed from one glycerol molecule joined to three fatty acid molecules.'
+      },
+      {
+        id: 100,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'What happens to excess proteins in the human body as part of metabolism?',
+        options: [
+          'Excess proteins are broken down into amino acids, and the excess amino acids are converted into urea in the liver to be excreted by the kidneys',
+          'Excess proteins are stored as starch grains in muscle cells',
+          'Excess proteins are exhaled as carbon dioxide through the alveoli',
+          'Excess proteins are converted into cellulose cell walls'
+        ],
+        answer: 0,
+        explanation: 'The body cannot store excess amino acids; the liver breaks them down to form urea for urinary excretion.'
+      },
+      {
+        id: 101,
+        tier: 'higher',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'How does the recovery time of heart rate after standardised exercise compare between a fit athlete and an unfit person?',
+        options: [
+          'A fit person has a lower resting heart rate, a smaller percentage rise in heart rate during exercise, and a faster recovery back to resting heart rate because their stronger heart has a larger stroke volume and repays oxygen debt faster',
+          'A fit person has a much higher resting heart rate and takes twice as long to recover',
+          'Both fit and unfit people have identical heart rates before, during, and after exercise',
+          'A fit person never uses aerobic respiration during exercise'
+        ],
+        answer: 0,
+        explanation: 'Regular aerobic training increases cardiac muscle strength and stroke volume, delivering more oxygen per beat and clearing lactic acid more rapidly post-exercise.'
+      },
+      {
+        id: 102,
+        tier: 'higher',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'During a 100 m sprint (lasting ~11 seconds), why does a runner rely heavily on anaerobic respiration even though they breathe in deeply right before the starting gun?',
+        options: [
+          'Muscles contract so rapidly that the circulatory system cannot deliver oxygen fast enough to meet the immediate ATP demand, so anaerobic respiration provides rapid energy despite producing lactic acid',
+          'The lungs close completely when running faster than 8 m/s',
+          'Anaerobic respiration produces more energy per glucose molecule than aerobic respiration',
+          'Oxygen cannot bind to haemoglobin during sprinting'
+        ],
+        answer: 0,
+        explanation: 'Cardiovascular oxygen delivery takes time to ramp up and cannot match peak explosive muscle power, so anaerobic glycolysis supplements aerobic ATP production.'
+      },
+      {
+        id: 103,
+        tier: 'higher',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'An athlete’s resting heart rate is 60 bpm. During a run, it rises to 156 bpm. After stopping, it drops to 108 bpm after 2 minutes and returns to 60 bpm after 5 minutes. Calculate the percentage increase in heart rate from rest to peak exercise.',
+        options: ['+160%', '+96%', '+61.5%', '+260%'],
+        answer: 0,
+        explanation: 'Increase = 156 − 60 = 96 bpm. Percentage increase = (96 ÷ 60) × 100 = +160%.'
+      },
+      {
+        id: 104,
+        tier: 'separate',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'In Separate Biology, why does vasodilation of arterioles supplying the skin occur alongside increased sweating during prolonged vigorous exercise?',
+        options: [
+          'Because increased cellular respiration releases excess thermal energy (exothermic); vasodilation brings warm blood closer to the skin surface to lose heat by radiation, while sweat evaporation transfers heat energy away to prevent enzymes denaturing',
+          'To stop oxygen from reaching the leg muscles',
+          'To force lactic acid out through the sweat glands instead of the liver',
+          'To absorb light energy for vitamin D synthesis'
+        ],
+        answer: 0,
+        explanation: 'High respiration rates generate substantial heat; thermoregulatory vasodilation and sweating dissipate thermal energy to keep core temperature near 37 °C.'
+      },
+      {
+        id: 105,
+        tier: 'separate',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'In Separate Biology, why do people with an underactive thyroid gland (producing insufficient thyroxine hormone) often experience weight gain and fatigue?',
+        options: [
+          'Thyroxine stimulates the basal metabolic rate (BMR); low thyroxine slows down cellular respiration and metabolic reactions, so less glucose and fat are respired to transfer energy',
+          'Thyroxine digests starch in the small intestine',
+          'Low thyroxine causes the lungs to absorb too much oxygen',
+          'Thyroxine turns glycogen into cellulose'
+        ],
+        answer: 0,
+        explanation: 'Thyroxine regulates basal metabolic rate; reduced thyroxine lowers metabolic energy expenditure, causing tiredness and weight gain.'
+      },
+      {
+        id: 106,
+        tier: 'separate',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'During prolonged endurance exercise (such as a marathon), once muscle glycogen stores are depleted, which energy reserve does the body mobilise and respire aerobically?',
+        options: [
+          'Stored lipids (fats) from adipose tissue, which are broken down into fatty acids and glycerol and oxidised aerobically in mitochondria',
+          'Cellulose from the cell walls of blood vessels',
+          'Urea stored inside the kidneys',
+          'Haemoglobin from red blood cells'
+        ],
+        answer: 0,
+        explanation: 'When glycogen reserves run low during prolonged aerobic exercise, fatty acids mobilised from fat stores are oxidised aerobically (which requires high oxygen supply).'
+      },
+      {
+        id: 107,
+        tier: 'higher',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'Why does the energy transferred by respiration inside cells continually drive metabolic synthesis reactions?',
+        options: [
+          'Because building larger molecules (like proteins from amino acids, glycogen from glucose, and lipids from fatty acids and glycerol) requires an input of energy supplied by respiration',
+          'Because enzymes only work when heated to 60 °C by respiration',
+          'Because respiration turns amino acids directly into light energy',
+          'Because respiration destroys all waste products in the cytoplasm'
+        ],
+        answer: 0,
+        explanation: 'Anabolic synthesis reactions require energy, which is continuously supplied by exothermic cellular respiration.'
+      },
+      {
+        id: 108,
+        tier: 'foundation',
+        topic: 'Exercise, Oxygen Debt & Metabolism',
+        isPractical: false,
+        q: 'Which organ in the human body plays the central role in metabolism—including converting excess glucose to glycogen, converting lactic acid back to glucose, and breaking down excess amino acids into urea?',
+        options: ['The liver', 'The gall bladder', 'The large intestine', 'The trachea'],
+        answer: 0,
+        explanation: 'The liver is the body’s primary metabolic hub, regulating glycogen storage, lactate-to-glucose conversion (Cori cycle), and deamination of excess amino acids.'
+      }
+    ];
+
+    // =========================================================================
+    // 2. STATE MANAGEMENT
+    // =========================================================================
+    let state = {
+      studentName: '',
+      studentEmail: '',
+      selectedTier: 'higher', // 'foundation' | 'higher' | 'separate'
+      selectedMode: 'all',    // 'all' | 'rp'
+      selectedCount: 20,
+      activeQuestions: [],
+      currentIndex: 0,
+      score: 0,
+      answeredCurrent: false,
+      userResponses: [],      // { questionObj, chosenIndex, isCorrect }
+      isMissedRetry: false
+    };
+
+    // =========================================================================
+    // 3. FILTERING & POOL HELPERS
+    // =========================================================================
+    function getFilteredPool(tier, mode) {
+      return QUESTION_BANK.filter(item => {
+        let tierMatch = false;
+        if (tier === 'foundation') {
+          tierMatch = item.tier === 'foundation';
+        } else if (tier === 'higher') {
+          tierMatch = item.tier === 'foundation' || item.tier === 'higher';
+        } else {
+          tierMatch = item.tier === 'foundation' || item.tier === 'higher' || item.tier === 'separate';
+        }
+
+        if (!tierMatch) return false;
+        if (mode === 'rp') return item.isPractical === true;
+        return true;
+      });
+    }
+
+    function shuffleArray(array) {
+      const copy = [...array];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function prepareQuestionWithShuffledOptions(item) {
+      const indexed = item.options.map((text, idx) => ({
+        text,
+        isCorrect: idx === item.answer
+      }));
+      const shuffled = shuffleArray(indexed);
+      return {
+        ...item,
+        shuffledOptions: shuffled,
+        shuffledAnswerIndex: shuffled.findIndex(o => o.isCorrect)
+      };
+    }
+
+    // =========================================================================
+    // 4. START SCREEN UI INTERACTIONS
+    // =========================================================================
+    function selectTier(tier) {
+      state.selectedTier = tier;
+
+      document.querySelectorAll('.tier-btn').forEach(btn => {
+        const isSelected = btn.dataset.tier === tier;
+        const check = btn.querySelector('.tier-check');
+        if (isSelected) {
+          btn.classList.remove('border-slate-200', 'bg-slate-50');
+          btn.classList.add('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+          check.classList.remove('border-slate-300');
+          check.classList.add('border-teal-600', 'bg-teal-600');
+        } else {
+          btn.classList.add('border-slate-200', 'bg-slate-50');
+          btn.classList.remove('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+          check.classList.add('border-slate-300');
+          check.classList.remove('border-teal-600', 'bg-teal-600');
+        }
+      });
+
+      const rpDesc = document.getElementById('modeRpDesc');
+      if (tier === 'foundation') {
+        rpDesc.textContent = 'Focused practical drill: RP6 Combined / RP5 Separate Photosynthesis Light Intensity (Pondweed) & Yeast Respiration.';
+      } else if (tier === 'separate') {
+        rpDesc.textContent = 'Focused practical drill: Pondweed Light Intensity (1/d²), Hydrogen Carbonate Indicator, Respirometers & Yeast Fermentation.';
+      } else {
+        rpDesc.textContent = 'Focused practical drill: Pondweed Light Intensity (Inverse Square Law 1/d²), Respirometers & Yeast Temperature Rates.';
+      }
+
+      updateSetupLabels();
+    }
+
+    function selectMode(mode) {
+      state.selectedMode = mode;
+
+      const allBtn = document.getElementById('modeAllBtn');
+      const allIcon = document.getElementById('modeAllIcon');
+      const allCheck = document.getElementById('modeAllCheck');
+
+      const rpBtn = document.getElementById('modeRpBtn');
+      const rpIcon = document.getElementById('modeRpIcon');
+      const rpCheck = document.getElementById('modeRpCheck');
+
+      if (mode === 'all') {
+        allBtn.classList.remove('border-slate-200', 'bg-slate-50');
+        allBtn.classList.add('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+        allIcon.classList.remove('bg-slate-200', 'text-slate-700');
+        allIcon.classList.add('bg-teal-600', 'text-white');
+        allCheck.classList.remove('hidden');
+
+        rpBtn.classList.remove('border-amber-500', 'bg-amber-50', 'shadow-sm');
+        rpBtn.classList.add('border-slate-200', 'bg-amber-50/40');
+        rpIcon.classList.remove('bg-amber-500', 'text-white');
+        rpIcon.classList.add('bg-amber-100', 'text-amber-800');
+        rpCheck.classList.add('hidden');
+      } else {
+        rpBtn.classList.remove('border-slate-200', 'bg-amber-50/40');
+        rpBtn.classList.add('border-amber-500', 'bg-amber-50', 'shadow-sm');
+        rpIcon.classList.remove('bg-amber-100', 'text-amber-800');
+        rpIcon.classList.add('bg-amber-500', 'text-white');
+        rpCheck.classList.remove('hidden');
+
+        allBtn.classList.remove('border-teal-600', 'bg-teal-50/60', 'shadow-sm');
+        allBtn.classList.add('border-slate-200', 'bg-slate-50');
+        allIcon.classList.remove('bg-teal-600', 'text-white');
+        allIcon.classList.add('bg-slate-200', 'text-slate-700');
+        allCheck.classList.add('hidden');
+      }
+
+      updateSetupLabels();
+    }
+
+    function selectCount(count) {
+      state.selectedCount = count;
+      document.querySelectorAll('.count-btn').forEach(btn => {
+        const btnCount = parseInt(btn.dataset.count, 10);
+        if (btnCount === count) {
+          btn.classList.remove('border-slate-200', 'bg-slate-50', 'text-slate-800', 'hover:border-teal-400');
+          btn.classList.add('border-teal-600', 'bg-teal-600', 'text-white', 'shadow-sm');
+        } else {
+          btn.classList.add('border-slate-200', 'bg-slate-50', 'text-slate-800', 'hover:border-teal-400');
+          btn.classList.remove('border-teal-600', 'bg-teal-600', 'text-white', 'shadow-sm');
+        }
+      });
+      updateSetupLabels();
+    }
+
+    function updateSetupLabels() {
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const tierBadges = {
+        foundation: 'Foundation Tier Selected',
+        higher: 'Higher Tier Selected',
+        separate: 'Separate Biology (8461) Selected'
+      };
+
+      document.getElementById('tierCountHint').textContent = tierBadges[state.selectedTier];
+
+      const pool = getFilteredPool(state.selectedTier, state.selectedMode);
+      const poolText = document.getElementById('poolAvailabilityText');
+      const cappedBadge = document.getElementById('cappedPoolBadge');
+
+      if (state.selectedMode === 'rp') {
+        poolText.textContent = `${pool.length} unique Required Practical questions available`;
+      } else {
+        poolText.textContent = `${pool.length} unique questions available for ${tierNames[state.selectedTier]}`;
+      }
+
+      const actualCount = Math.min(state.selectedCount, pool.length);
+      if (state.selectedCount > pool.length) {
+        cappedBadge.classList.remove('hidden');
+        cappedBadge.textContent = `Running max ${actualCount} available`;
+      } else {
+        cappedBadge.classList.add('hidden');
+      }
+
+      const startLabel = document.getElementById('startBtnLabel');
+      if (state.selectedMode === 'rp') {
+        startLabel.textContent = `Start Required Practicals Quiz (${actualCount} Questions)`;
+      } else {
+        startLabel.textContent = `Start ${tierNames[state.selectedTier]} Quiz (${actualCount} Questions)`;
+      }
+    }
+
+    function clearValidationError() {
+      const input = document.getElementById('studentNameInput');
+      const alertBox = document.getElementById('validationAlert');
+      input.classList.remove('border-rose-500', 'bg-rose-50/40');
+      alertBox.classList.add('hidden');
+    }
+
+    function handleStartQuiz(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('studentNameInput');
+      const emailInput = document.getElementById('studentEmailInput');
+      const nameVal = nameInput.value.trim();
+
+      if (!nameVal) {
+        nameInput.classList.add('border-rose-500', 'bg-rose-50/40');
+        document.getElementById('validationAlert').classList.remove('hidden');
+        nameInput.focus();
+        return;
+      }
+
+      state.studentName = nameVal;
+      state.studentEmail = emailInput.value.trim();
+      state.isMissedRetry = false;
+
+      const pool = getFilteredPool(state.selectedTier, state.selectedMode);
+      const shuffledPool = shuffleArray(pool);
+      const chosenSlice = shuffledPool.slice(0, Math.min(state.selectedCount, shuffledPool.length));
+
+      launchQuizSession(chosenSlice);
+    }
+
+    // =========================================================================
+    // 5. QUIZ ENGINE
+    // =========================================================================
+    function launchQuizSession(rawQuestions) {
+      state.activeQuestions = rawQuestions.map(prepareQuestionWithShuffledOptions);
+      state.currentIndex = 0;
+      state.score = 0;
+      state.answeredCurrent = false;
+      state.userResponses = [];
+
+      document.getElementById('headerStudentName').textContent = state.studentName;
+      document.getElementById('headerControls').classList.remove('hidden');
+
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('quizScreen').classList.remove('hidden');
+
+      renderCurrentQuestion();
+    }
+
+    function renderCurrentQuestion() {
+      const item = state.activeQuestions[state.currentIndex];
+      const total = state.activeQuestions.length;
+      const qNum = state.currentIndex + 1;
+      state.answeredCurrent = false;
+
+      const tierLabels = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const tierBadge = document.getElementById('quizTierBadge');
+      tierBadge.textContent = state.isMissedRetry ? 'Missed Questions Drill' : tierLabels[state.selectedTier];
+
+      document.getElementById('quizTopicBadge').textContent = item.topic;
+
+      const focusBadge = document.getElementById('quizFocusBadge');
+      if (item.isPractical) {
+        focusBadge.classList.remove('hidden');
+      } else {
+        focusBadge.classList.add('hidden');
+      }
+
+      document.getElementById('questionCounterText').textContent = `Question ${qNum} of ${total}`;
+      document.getElementById('liveScoreText').textContent = state.score;
+      const pct = Math.round(((qNum - 1) / total) * 100);
+      document.getElementById('quizProgressBar').style.width = `${Math.max(4, pct)}%`;
+
+      document.getElementById('questionPrompt').textContent = item.q;
+      document.getElementById('feedbackBox').classList.add('hidden');
+
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      item.shuffledOptions.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'option-card w-full text-left p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:bg-teal-50/50 hover:border-teal-500 flex items-start gap-3.5 focus:outline-none';
+        btn.innerHTML = `
+          <span class="option-letter w-7 h-7 rounded-lg bg-white border border-slate-300 text-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0 mt-0.5">
+            ${letters[idx]}
+          </span>
+          <span class="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+            ${opt.text}
+          </span>
+        `;
+        btn.onclick = () => handleAnswerSelection(idx);
+        container.appendChild(btn);
+      });
+    }
+
+    function handleAnswerSelection(chosenIdx) {
+      if (state.answeredCurrent) return;
+      state.answeredCurrent = true;
+
+      const item = state.activeQuestions[state.currentIndex];
+      const isCorrect = chosenIdx === item.shuffledAnswerIndex;
+
+      if (isCorrect) {
+        state.score++;
+        document.getElementById('liveScoreText').textContent = state.score;
+      }
+
+      state.userResponses.push({
+        questionObj: item,
+        chosenIndex: chosenIdx,
+        isCorrect: isCorrect
+      });
+
+      const optionBtns = document.querySelectorAll('#optionsContainer .option-card');
+      optionBtns.forEach((btn, idx) => {
+        btn.disabled = true;
+        const letterBadge = btn.querySelector('.option-letter');
+        btn.classList.remove('hover:bg-teal-50/50', 'hover:border-teal-500', 'bg-slate-50', 'border-slate-200');
+
+        if (idx === item.shuffledAnswerIndex) {
+          btn.classList.add('bg-emerald-50', 'border-emerald-500');
+          letterBadge.classList.remove('bg-white', 'border-slate-300', 'text-slate-700');
+          letterBadge.classList.add('bg-emerald-600', 'border-emerald-600', 'text-white');
+        } else if (idx === chosenIdx && !isCorrect) {
+          btn.classList.add('bg-rose-50', 'border-rose-500');
+          letterBadge.classList.remove('bg-white', 'border-slate-300', 'text-slate-700');
+          letterBadge.classList.add('bg-rose-600', 'border-rose-600', 'text-white');
+        } else {
+          btn.classList.add('bg-slate-50', 'border-slate-200', 'opacity-60');
+        }
+      });
+
+      const feedbackBox = document.getElementById('feedbackBox');
+      const feedbackIcon = document.getElementById('feedbackIcon');
+      const feedbackHeading = document.getElementById('feedbackHeading');
+      const feedbackExplanation = document.getElementById('feedbackExplanation');
+
+      feedbackBox.classList.remove('hidden', 'bg-emerald-50/70', 'border-emerald-300', 'bg-rose-50/70', 'border-rose-300');
+      feedbackIcon.classList.remove('bg-emerald-600', 'bg-rose-600', 'text-white');
+
+      if (isCorrect) {
+        feedbackBox.classList.add('bg-emerald-50/70', 'border-emerald-300');
+        feedbackIcon.classList.add('bg-emerald-600', 'text-white');
+        feedbackIcon.textContent = '✓';
+        feedbackHeading.textContent = 'Correct! Mark Awarded';
+        feedbackHeading.className = 'font-extrabold text-base text-emerald-900';
+        feedbackExplanation.className = 'text-sm mt-1.5 leading-relaxed text-emerald-900/90';
+      } else {
+        feedbackBox.classList.add('bg-rose-50/70', 'border-rose-300');
+        feedbackIcon.classList.add('bg-rose-600', 'text-white');
+        feedbackIcon.textContent = '✕';
+        feedbackHeading.textContent = 'Incorrect — Review AQA Examiner Note';
+        feedbackHeading.className = 'font-extrabold text-base text-rose-900';
+        feedbackExplanation.className = 'text-sm mt-1.5 leading-relaxed text-rose-900/90';
+      }
+
+      feedbackExplanation.textContent = item.explanation;
+
+      const isLast = state.currentIndex === state.activeQuestions.length - 1;
+      document.getElementById('nextBtnText').textContent = isLast ? 'View Diagnostic Report' : 'Next Question';
+
+      const total = state.activeQuestions.length;
+      const pct = Math.round(((state.currentIndex + 1) / total) * 100);
+      document.getElementById('quizProgressBar').style.width = `${pct}%`;
+    }
+
+    function handleNextQuestion() {
+      if (state.currentIndex < state.activeQuestions.length - 1) {
+        state.currentIndex++;
+        renderCurrentQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        showDiagnosticReport();
+      }
+    }
+
+    // =========================================================================
+    // 6. DIAGNOSTIC REPORT & EXPORT
+    // =========================================================================
+    function estimateGcseGrade(pct, tier) {
+      if (tier === 'foundation') {
+        if (pct >= 80) return 'Grade 5';
+        if (pct >= 65) return 'Grade 4';
+        if (pct >= 50) return 'Grade 3';
+        if (pct >= 35) return 'Grade 2';
+        return 'Grade 1';
+      } else {
+        if (pct >= 85) return 'Grade 9';
+        if (pct >= 75) return 'Grade 8';
+        if (pct >= 65) return 'Grade 7';
+        if (pct >= 55) return 'Grade 6';
+        if (pct >= 45) return 'Grade 5';
+        if (pct >= 35) return 'Grade 4';
+        return 'Grade 3';
+      }
+    }
+
+    function showDiagnosticReport() {
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      const total = state.activeQuestions.length;
+      const pct = Math.round((state.score / total) * 100);
+
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const modeName = state.isMissedRetry
+        ? 'Targeted Missed Questions Retry'
+        : (state.selectedMode === 'rp' ? 'Required Practicals Only' : 'All Bioenergetics Topics');
+
+      document.getElementById('reportStudentTitle').textContent = `Diagnostic Report: ${state.studentName}`;
+      document.getElementById('reportMetaSubtitle').textContent = `${tierNames[state.selectedTier]} • ${modeName}`;
+      document.getElementById('reportPercentage').textContent = `${pct}%`;
+      document.getElementById('reportFraction').textContent = `${state.score} / ${total} Correct`;
+      document.getElementById('reportGradeBadge').textContent = estimateGcseGrade(pct, state.selectedTier);
+
+      const missedItems = state.userResponses.filter(r => !r.isCorrect);
+      const retryBtn = document.getElementById('retryMissedBtn');
+      if (missedItems.length > 0) {
+        retryBtn.classList.remove('hidden');
+        document.getElementById('missedCountLabel').textContent = missedItems.length;
+      } else {
+        retryBtn.classList.add('hidden');
+      }
+
+      const topicMap = {};
+      state.userResponses.forEach(res => {
+        const t = res.questionObj.topic;
+        if (!topicMap[t]) {
+          topicMap[t] = { correct: 0, total: 0 };
+        }
+        topicMap[t].total++;
+        if (res.isCorrect) topicMap[t].correct++;
+      });
+
+      const breakdownContainer = document.getElementById('topicBreakdownContainer');
+      breakdownContainer.innerHTML = '';
+
+      Object.entries(topicMap).forEach(([topicName, stats]) => {
+        const topicPct = Math.round((stats.correct / stats.total) * 100);
+        let barColor = 'bg-emerald-500';
+        let badgeStyle = 'bg-emerald-100 text-emerald-800';
+        let statusLabel = 'Strong';
+
+        if (topicPct < 50) {
+          barColor = 'bg-rose-500';
+          badgeStyle = 'bg-rose-100 text-rose-800';
+          statusLabel = 'Revise Priority';
+        } else if (topicPct < 70) {
+          barColor = 'bg-amber-500';
+          badgeStyle = 'bg-amber-100 text-amber-800';
+          statusLabel = 'Needs Revision';
+        }
+
+        const row = document.createElement('div');
+        row.className = 'p-4 rounded-xl bg-slate-50 border border-slate-200';
+        row.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <span class="font-bold text-sm text-slate-900">${topicName}</span>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${badgeStyle}">${statusLabel}</span>
+              <span class="text-xs font-extrabold text-slate-700">${stats.correct}/${stats.total} (${topicPct}%)</span>
+            </div>
+          </div>
+          <div class="w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+            <div class="h-full ${barColor} rounded-full transition-all duration-500" style="width: ${topicPct}%;"></div>
+          </div>
+        `;
+        breakdownContainer.appendChild(row);
+      });
+
+      const reviewList = document.getElementById('questionReviewList');
+      reviewList.innerHTML = '';
+
+      state.userResponses.forEach((res, idx) => {
+        const item = res.questionObj;
+        const chosenText = item.shuffledOptions[res.chosenIndex].text;
+        const correctText = item.shuffledOptions[item.shuffledAnswerIndex].text;
+
+        const card = document.createElement('div');
+        card.className = `p-4 sm:p-5 rounded-xl border-2 ${res.isCorrect ? 'border-emerald-200 bg-emerald-50/30' : 'border-rose-200 bg-rose-50/30'}`;
+        card.innerHTML = `
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider ${res.isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              Question ${idx + 1} &bull; ${res.isCorrect ? 'Correct' : 'Incorrect'}
+            </span>
+            <span class="text-xs font-semibold text-slate-500">${item.topic}</span>
+          </div>
+          <p class="font-bold text-sm sm:text-base text-slate-900 mb-3">${item.q}</p>
+          <div class="space-y-1.5 text-xs sm:text-sm">
+            <p class="${res.isCorrect ? 'text-emerald-800 font-semibold' : 'text-rose-800 font-semibold'}">
+              Your answer: ${chosenText}
+            </p>
+            ${!res.isCorrect ? `<p class="text-emerald-800 font-bold">Correct answer: ${correctText}</p>` : ''}
+            <p class="text-slate-600 pt-1.5 border-t border-slate-200/80 mt-2">
+              <strong class="text-slate-800">Mark Scheme Note:</strong> ${item.explanation}
+            </p>
+          </div>
+        `;
+        reviewList.appendChild(card);
+      });
+
+      const summaryText = buildPlainTextReport();
+      const subject = encodeURIComponent(`AQA GCSE Bioenergetics Quiz Results — ${state.studentName} (${pct}%)`);
+      const body = encodeURIComponent(summaryText);
+      const recipient = state.studentEmail ? encodeURIComponent(state.studentEmail) : '';
+      document.getElementById('emailResultsLink').href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    }
+
+    function buildPlainTextReport() {
+      const total = state.activeQuestions.length;
+      const pct = Math.round((state.score / total) * 100);
+      const estGrade = estimateGcseGrade(pct, state.selectedTier);
+      const tierNames = {
+        foundation: 'Foundation Tier',
+        higher: 'Higher Tier',
+        separate: 'Separate Biology'
+      };
+      const modeName = state.selectedMode === 'rp'
+        ? 'Required Practicals Only'
+        : 'All Bioenergetics Topics';
+
+      const topicMap = {};
+      state.userResponses.forEach(res => {
+        const t = res.questionObj.topic;
+        if (!topicMap[t]) topicMap[t] = { correct: 0, total: 0 };
+        topicMap[t].total++;
+        if (res.isCorrect) topicMap[t].correct++;
+      });
+
+      const breakdownLines = Object.entries(topicMap)
+        .map(([t, s]) => `- ${t}: ${s.correct}/${s.total} (${Math.round((s.correct / s.total) * 100)}%)`)
+        .join('\n');
+
+      return [
+        `Mr Leek Science — AQA GCSE Bioenergetics Revision Quiz`,
+        `Student: ${state.studentName}`,
+        `Pathway: ${tierNames[state.selectedTier]} | Focus: ${modeName}`,
+        `Overall Score: ${state.score} / ${total} (${pct}% — ${estGrade})`,
+        ``,
+        `Topic Breakdown:`,
+        breakdownLines
+      ].join('\n');
+    }
+
+    function copyResultsSummary() {
+      const text = buildPlainTextReport();
+      const tempArea = document.createElement('textarea');
+      tempArea.value = text;
+      tempArea.style.position = 'fixed';
+      tempArea.style.left = '-9999px';
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand('copy');
+        const label = document.getElementById('copyBtnLabel');
+        label.textContent = 'Copied to Clipboard ✓';
+        setTimeout(() => {
+          label.textContent = 'Copy Results Summary';
+        }, 2500);
+      } catch (err) {
+        // Fallback if blocked
+      }
+      document.body.removeChild(tempArea);
+    }
+
+    function startMissedQuestionsQuiz() {
+      const missedRaw = state.userResponses
+        .filter(r => !r.isCorrect)
+        .map(r => r.questionObj);
+
+      if (missedRaw.length === 0) return;
+      state.isMissedRetry = true;
+      launchQuizSession(shuffleArray(missedRaw));
+    }
+
+    // =========================================================================
+    // 7. NAVIGATION & MODAL HELPERS
+    // =========================================================================
+    function confirmReturnHome() {
+      const quizVisible = !document.getElementById('quizScreen').classList.contains('hidden');
+      if (quizVisible && state.userResponses.length > 0) {
+        document.getElementById('confirmModal').classList.remove('hidden');
+      } else {
+        returnToMenu();
+      }
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function returnToMenu() {
+      closeConfirmModal();
+      document.getElementById('quizScreen').classList.add('hidden');
+      document.getElementById('resultsScreen').classList.add('hidden');
+      document.getElementById('headerControls').classList.add('hidden');
+      document.getElementById('startScreen').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      selectTier('higher');
+      selectMode('all');
+      selectCount(20);
+    });
+  </script>
+</body>
+</html>
